@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>About Geotag Editor | Privacy-First GPS Photo Editor | GeotagEditor.com</title>
+    <meta name="description"
+        content="Learn about GeotagEditor.com - a privacy-first tool for editing GPS metadata in photos. 100% browser-based, no uploads, no tracking.">
+    <meta name="keywords"
+        content="about geotag editor, GPS photo editor about, privacy-first geotag tool, exif metadata editor about">
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-geotageditor.com.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-geotageditor.com.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-geotageditor.com.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-geotageditor.com.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-geotageditor.com.png">
+    <link rel="shortcut icon" href="assets/images/favicon-geotageditor.com.png">
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-dark: #4338ca;
+            --primary-light: #e0e7ff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+
+        .header-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .shadow-soft {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .shadow-deep {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .footer-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 40px;
+        }
+
+        .footer-wave .shape-fill {
+            fill: #ffffff;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-grid-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* About Page Specific Styles */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #64748b;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #64748b;
+            margin-bottom: 3rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border-left: 4px solid #4f46e5;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .story-step {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .story-step:hover {
+            border-color: #4f46e5;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(79, 70, 229, 0.15);
+        }
+
+        .step-number {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .value-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .value-card:hover {
+            border-color: #4f46e5;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(79, 70, 229, 0.15);
+        }
+
+        .value-icon {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .team-card:hover {
+            border-color: #4f46e5;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(79, 70, 229, 0.15);
+        }
+
+        .team-avatar {
+            width: 8rem;
+            height: 8rem;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-box::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 6rem;
+            font-family: serif;
+            color: rgba(255, 255, 255, 0.2);
+            line-height: 1;
+        }
+    </style>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://geotageditor.com/about.html">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About Geotag Editor",
+        "description": "Geotag Editor is a privacy-first, browser-based tool for editing GPS metadata in photos.",
+        "url": "https://geotageditor.com/about.html",
+        "publisher": {
+            "@type": "Organization",
+            "name": "GeotagEditor.com",
+            "url": "https://geotageditor.com",
+            "description": "Privacy-first geotag editing tool"
+        }
+    }
+    </script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-soft transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white">
+                        </div>
+                    </div>
+                    <div>
+                        <a href="index.html"
+                            class="text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors">Geotag
+                            Editor</a>
+                        <div class="text-xs text-gray-500 font-medium">by GeotagEditor.com</div>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <a href="index.html"
+                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600 active flex items-center">
+                        <i class="fa-solid fa-house mr-2 text-indigo-500"></i>
+                        Home
+                    </a>
+                    <a href="tool.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-edit mr-2 text-sm"></i>Editor Tool
+                    </a>
+                    <a href="features.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-star mr-2 text-sm"></i>Features
+                    </a>
+                    <a href="how-it-works.html"
+                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-play-circle mr-2 text-sm"></i>How It Works
+                    </a>
+                    <a href="guides.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-book mr-2 text-sm"></i>Guides
+                    </a>
+                    <a href="faq.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-question-circle mr-2 text-sm"></i>FAQ
+                    </a>
+                    <a href="about.html"
+                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600 active">
+                        <i class="fas fa-info-circle mr-2 text-sm"></i>About
+                    </a>
+                    <a href="tool.html"
+                        class="ml-4 px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg hover-lift transition-all shadow-md hover:shadow-lg">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Start Editing
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton"
+                    class="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 hover-lift transition-all">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="lg:hidden bg-white border-t border-gray-100 shadow-lg transform origin-top transition-all duration-300 scale-y-0 opacity-0 absolute w-full z-40">
+            <div class="px-4 py-6 space-y-1 bg-grid-pattern">
+                <a href="index.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-home mr-3 text-indigo-500"></i>Home
+                </a>
+                <a href="tool.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-edit mr-3 text-indigo-500"></i>Editor Tool
+                </a>
+                <a href="features.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-star mr-3 text-indigo-500"></i>Features
+                </a>
+                <a href="how-it-works.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-play-circle mr-3 text-indigo-500"></i>How It Works
+                </a>
+                <a href="guides.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-book mr-3 text-indigo-500"></i>Guides
+                </a>
+                <a href="faq.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-question-circle mr-3 text-indigo-500"></i>FAQ
+                </a>
+                <a href="about.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all active bg-indigo-50 text-indigo-700">
+                    <i class="fas fa-info-circle mr-3 text-indigo-500"></i>About
+                </a>
+                <a href="privacy-policy.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-shield-alt mr-3 text-indigo-500"></i>Privacy Policy
+                </a>
+                <div class="pt-4 mt-4 border-t border-gray-100">
+                    <a href="tool.html"
+                        class="block text-center px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg hover-lift transition-all shadow-md">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Start Editing GPS Data
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden py-16 md:py-24 lg:py-28">
+        <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-64 h-64 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000">
+        </div>
+
+        <div class="section-container relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div
+                    class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 font-medium mb-6">
+                    <i class="fas fa-info-circle mr-2"></i>Our Story & Vision
+                </div>
+                <h1 class="hero-title">About Geotag Editor</h1>
+                <p class="hero-subtitle">A privacy-first, browser-based tool for editing GPS metadata in your photos.
+                    Built on the principle that your data should never leave your device.</p>
+
+                <div class="mt-10 flex flex-wrap justify-center gap-4">
+                    <a href="#mission" class="btn-primary">
+                        <i class="fas fa-bullseye mr-2"></i>Our Mission
+                    </a>
+                    <a href="#story"
+                        class="px-6 py-3 bg-white text-gray-800 font-medium rounded-lg border border-gray-200 hover:border-indigo-300 hover:shadow-md transition-all">
+                        <i class="fas fa-history mr-2"></i>Our Story
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="py-16 lg:py-24 bg-white">
+        <div class="section-container">
+            <div class="max-w-5xl mx-auto">
+                <div class="glass-card p-8 md:p-12 rounded-3xl">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-bullseye text-indigo-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-800">Our Mission & Vision</h2>
+                            <p class="text-gray-600">Building tools that respect user privacy above all else</p>
+                        </div>
+                    </div>
+
+                    <div class="prose prose-lg max-w-none">
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                            At <strong class="text-indigo-600">GeotagEditor.com</strong>, we believe that privacy should
+                            be the default, not an afterthought. In a digital world where personal data is constantly
+                            collected, tracked, and monetized, we're building tools that fundamentally respect your
+                            privacy and put you in control of your data.
+                        </p>
+
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                            Our mission is simple yet powerful: <strong>provide accessible, powerful tools for managing
+                                GPS metadata in photos while ensuring that your data never leaves your device.</strong>
+                            We're proving that you don't need to sacrifice privacy for functionality.
+                        </p>
+
+                        <div class="quote-box my-8">
+                            <p class="text-xl italic mb-4">"If you're not paying for the product, you are the product.
+                                We're here to change that narrative by building tools that work for you, not against
+                                you."</p>
+                            <p class="text-white/90 font-medium">— Geotag Editor Team</p>
+                        </div>
+
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            Every line of code we write, every feature we add, and every design decision we make is
+                            guided by one core principle: <strong>your data belongs to you.</strong> We're committed to
+                            building a future where privacy-first tools are the standard, not the exception.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem & Solution -->
+    <section class="py-16 lg:py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="section-container">
+            <div class="text-center mb-12">
+                <h2 class="section-title">The Problem We Solve</h2>
+                <p class="section-subtitle">Why traditional tools fail privacy-conscious users</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- The Problem -->
+                <div class="story-step">
+                    <div class="flex items-center mb-6">
+                        <div class="step-number bg-red-100 text-red-600">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">The Problem</h3>
+                            <p class="text-gray-600">Why existing solutions fail users</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start p-4 bg-red-50 rounded-lg border border-red-100">
+                            <i class="fas fa-cloud-upload-alt text-red-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Forced Server Uploads</h4>
+                                <p class="text-gray-600 text-sm">Most online tools require uploading your private photos
+                                    to their servers, exposing your personal memories to third-party access and
+                                    potential data breaches.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start p-4 bg-red-50 rounded-lg border border-red-100">
+                            <i class="fas fa-eye text-red-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Hidden Data Collection</h4>
+                                <p class="text-gray-600 text-sm">Many "free" tools monetize your data by collecting,
+                                    analyzing, and selling your information without transparent disclosure or meaningful
+                                    consent.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start p-4 bg-red-50 rounded-lg border border-red-100">
+                            <i class="fas fa-map-marker-alt text-red-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Location Privacy Risks</h4>
+                                <p class="text-gray-600 text-sm">GPS metadata reveals sensitive information about your
+                                    home, workplace, daily routines, and travel patterns—information that should remain
+                                    private.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start p-4 bg-red-50 rounded-lg border border-red-100">
+                            <i class="fas fa-laptop-code text-red-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Complexity Barriers</h4>
+                                <p class="text-gray-600 text-sm">Traditional desktop software is often expensive,
+                                    complex to install, and requires technical expertise that excludes casual users and
+                                    photography enthusiasts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Our Solution -->
+                <div class="story-step">
+                    <div class="flex items-center mb-6">
+                        <div class="step-number bg-green-100 text-green-600">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Our Solution</h3>
+                            <p class="text-gray-600">Privacy-first geotag editing</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start p-4 bg-green-50 rounded-lg border border-green-100">
+                            <i class="fas fa-lock text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">100% Browser-Based</h4>
+                                <p class="text-gray-600 text-sm">Everything happens locally in your browser using modern
+                                    web technologies. No uploads to servers, no cloud processing, no external
+                                    dependencies.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start p-4 bg-green-50 rounded-lg border border-green-100">
+                            <i class="fas fa-ban text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Zero Data Collection</h4>
+                                <p class="text-gray-600 text-sm">We don't collect, store, or analyze any of your data.
+                                    No analytics, no tracking, no cookies for surveillance. Your privacy is truly
+                                    respected.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start p-4 bg-green-50 rounded-lg border border-green-100">
+                            <i class="fas fa-bolt text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Instant & Simple</h4>
+                                <p class="text-gray-600 text-sm">Intuitive interface designed for everyone. No
+                                    installation, no registration, no learning curve. Just drag, drop, edit, and
+                                    download.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start p-4 bg-green-50 rounded-lg border border-green-100">
+                            <i class="fas fa-infinity text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Free & Open Source</h4>
+                                <p class="text-gray-600 text-sm">Completely free with no hidden costs, no subscriptions,
+                                    no watermarks. Our code is open source for transparency and community verification.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section id="story" class="py-16 lg:py-24 bg-white">
+        <div class="section-container">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Our Journey</h2>
+                <p class="section-subtitle">From a simple idea to a privacy-first solution</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-8">
+                    <!-- Step 1 -->
+                    <div class="story-step">
+                        <div class="flex flex-col md:flex-row md:items-start gap-6">
+                            <div class="step-number bg-indigo-100 text-indigo-600">1</div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">The Spark of an Idea</h3>
+                                <p class="text-gray-600 mb-4">GeotagEditor.com began in late 2023 during a photography
+                                    project that required editing GPS metadata for hundreds of travel photos. We
+                                    searched for tools but found only two options: complex desktop software that
+                                    required installation and technical expertise, or "convenient" web tools that
+                                    demanded we upload our personal photos to unknown servers.</p>
+                                <div class="highlight-box">
+                                    <p class="text-indigo-800"><strong>The Turning Point:</strong> We realized there was
+                                        a fundamental conflict between convenience and privacy. Why should users have to
+                                        choose between easy-to-use tools and protecting their personal data?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="story-step">
+                        <div class="flex flex-col md:flex-row md:items-start gap-6">
+                            <div class="step-number bg-blue-100 text-blue-600">2</div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">The Technical Realization</h3>
+                                <p class="text-gray-600 mb-4">We discovered that modern web technologies had evolved
+                                    dramatically. With advancements in JavaScript, Web APIs, and browser capabilities,
+                                    complex image processing that previously required server infrastructure could now be
+                                    performed entirely locally in the browser. This was our breakthrough moment.</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                                    <div class="text-center p-4 bg-blue-50 rounded-lg">
+                                        <div
+                                            class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                            <i class="fab fa-js text-blue-600"></i>
+                                        </div>
+                                        <p class="text-sm font-medium text-gray-800">Modern JavaScript</p>
+                                        <p class="text-xs text-gray-600">Powerful client-side processing</p>
+                                    </div>
+                                    <div class="text-center p-4 bg-blue-50 rounded-lg">
+                                        <div
+                                            class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                            <i class="fas fa-file-image text-blue-600"></i>
+                                        </div>
+                                        <p class="text-sm font-medium text-gray-800">Browser APIs</p>
+                                        <p class="text-xs text-gray-600">Local file handling capabilities</p>
+                                    </div>
+                                    <div class="text-center p-4 bg-blue-50 rounded-lg">
+                                        <div
+                                            class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                            <i class="fas fa-shield-alt text-blue-600"></i>
+                                        </div>
+                                        <p class="text-sm font-medium text-gray-800">Privacy by Design</p>
+                                        <p class="text-xs text-gray-600">Built-in security features</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="story-step">
+                        <div class="flex flex-col md:flex-row md:items-start gap-6">
+                            <div class="step-number bg-green-100 text-green-600">3</div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">Building with Purpose</h3>
+                                <p class="text-gray-600 mb-4">Armed with this technical insight, we built Geotag Editor
+                                    from the ground up with privacy as our non-negotiable foundation. Every design
+                                    decision was scrutinized through a privacy lens. We chose open-source licensing to
+                                    ensure transparency and allow the community to verify our privacy claims.</p>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400 mt-4">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                        <div>
+                                            <h4 class="font-semibold text-gray-800 mb-1">Key Development Principles</h4>
+                                            <ul class="space-y-1 text-gray-600 text-sm">
+                                                <li>• No server-side processing required</li>
+                                                <li>• Zero data collection or tracking</li>
+                                                <li>• Open source for verification</li>
+                                                <li>• Simple, intuitive user experience</li>
+                                                <li>• No external dependencies or tracking libraries</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="story-step">
+                        <div class="flex flex-col md:flex-row md:items-start gap-6">
+                            <div class="step-number bg-purple-100 text-purple-600">4</div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">Today & The Future</h3>
+                                <p class="text-gray-600 mb-4">Today, GeotagEditor.com serves thousands of
+                                    privacy-conscious users worldwide who trust us with their photos. We've proven that
+                                    powerful tools can respect user privacy without compromising functionality. Our
+                                    journey continues as we expand our capabilities while maintaining our core privacy
+                                    commitment.</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="p-4 bg-purple-50 rounded-lg">
+                                        <h4 class="font-semibold text-gray-800 mb-2">Current Focus</h4>
+                                        <ul class="space-y-1 text-gray-600 text-sm">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-circle text-xs mr-2 text-purple-500"></i>
+                                                Improving JPEG support and performance
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-circle text-xs mr-2 text-purple-500"></i>
+                                                Enhancing interactive map features
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-circle text-xs mr-2 text-purple-500"></i>
+                                                Building comprehensive user guides
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-4 bg-purple-50 rounded-lg">
+                                        <h4 class="font-semibold text-gray-800 mb-2">Future Vision</h4>
+                                        <ul class="space-y-1 text-gray-600 text-sm">
+                                            <li class="flex items-center">
+                                                <i class="fas fa-circle text-xs mr-2 text-purple-500"></i>
+                                                Support for additional image formats
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-circle text-xs mr-2 text-purple-500"></i>
+                                                Batch processing capabilities
+                                            </li>
+                                            <li class="flex items-center">
+                                                <i class="fas fa-circle text-xs mr-2 text-purple-500"></i>
+                                                Integration with photo management tools
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
+        <div class="section-container">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Our Core Values</h2>
+                <p class="section-subtitle">The principles that guide everything we do</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Value 1 -->
+                <div class="value-card">
+                    <div class="value-icon bg-indigo-100 text-indigo-600">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Privacy First</h3>
+                    <p class="text-gray-600">We believe privacy is a fundamental human right, not a premium feature.
+                        Your data belongs to you, not to corporations or advertisers.</p>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <p class="text-sm text-gray-500">Manifested in: No uploads, no tracking, no data collection</p>
+                    </div>
+                </div>
+
+                <!-- Value 2 -->
+                <div class="value-card">
+                    <div class="value-icon bg-blue-100 text-blue-600">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Accessibility</h3>
+                    <p class="text-gray-600">Advanced technology should be accessible to everyone. We strip away
+                        complexity to make powerful tools usable by all skill levels.</p>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <p class="text-sm text-gray-500">Manifested in: No installation, intuitive interface, free
+                            access</p>
+                    </div>
+                </div>
+
+                <!-- Value 3 -->
+                <div class="value-card">
+                    <div class="value-icon bg-green-100 text-green-600">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Transparency</h3>
+                    <p class="text-gray-600">Trust is earned through openness. We're transparent about how our tool
+                        works and invite scrutiny through open-source development.</p>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <p class="text-sm text-gray-500">Manifested in: Open source code, clear documentation, honest
+                            communication</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="section-container">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="section-title">Built with Passion</h2>
+                <p class="section-subtitle">GeotagEditor.com is developed by a dedicated team of privacy advocates,
+                    developers, and photography enthusiasts.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Team 1 -->
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Privacy-Focused Developers</h3>
+                    <p class="text-gray-600 mb-4">Our technical team specializes in building web applications that
+                        prioritize user privacy, security, and data sovereignty above all else.</p>
+                    <div class="flex justify-center space-x-2">
+                        <span
+                            class="px-3 py-1 bg-indigo-100 text-indigo-600 text-xs font-medium rounded-full">JavaScript</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs font-medium rounded-full">Web
+                            APIs</span>
+                        <span
+                            class="px-3 py-1 bg-green-100 text-green-600 text-xs font-medium rounded-full">Security</span>
+                    </div>
+                </div>
+
+                <!-- Team 2 -->
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Open Source Community</h3>
+                    <p class="text-gray-600 mb-4">We believe in the power of collaborative development. Our open-source
+                        approach allows global contributors to improve and verify our tool.</p>
+                    <div class="flex justify-center space-x-2">
+                        <span
+                            class="px-3 py-1 bg-purple-100 text-purple-600 text-xs font-medium rounded-full">GitHub</span>
+                        <span
+                            class="px-3 py-1 bg-yellow-100 text-yellow-600 text-xs font-medium rounded-full">Community</span>
+                        <span
+                            class="px-3 py-1 bg-red-100 text-red-600 text-xs font-medium rounded-full">Collaboration</span>
+                    </div>
+                </div>
+
+                <!-- Team 3 -->
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Photography Enthusiasts</h3>
+                    <p class="text-gray-600 mb-4">As photographers ourselves, we intimately understand the challenges of
+                        managing photo metadata and the importance of preserving location memories.</p>
+                    <div class="flex justify-center space-x-2">
+                        <span
+                            class="px-3 py-1 bg-teal-100 text-teal-600 text-xs font-medium rounded-full">Photography</span>
+                        <span
+                            class="px-3 py-1 bg-pink-100 text-pink-600 text-xs font-medium rounded-full">Metadata</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">Organization</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <div
+                    class="inline-flex items-center justify-center px-6 py-3 bg-indigo-50 text-indigo-700 rounded-full font-medium">
+                    <i class="fas fa-heart mr-2"></i>
+                    <span>We build tools we want to use ourselves, with the privacy we expect as users.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved -->
+    <section
+        class="py-16 lg:py-24 relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full mix-blend-overlay blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-blue-300 rounded-full mix-blend-overlay blur-3xl">
+            </div>
+            <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-pink-300 rounded-full mix-blend-overlay blur-3xl"></div>
+        </div>
+
+        <div class="section-container relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <!-- Badge -->
+                <div
+                    class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/20 backdrop-blur-sm text-white font-semibold text-sm mb-8">
+                    <div class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                    <span>Join Our Mission</span>
+                </div>
+
+                <!-- Title -->
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                    <span class="block">Want to Get Involved?</span>
+                </h2>
+
+                <!-- Description -->
+                <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                    GeotagEditor.com is an open-source project driven by community collaboration. Whether you're a
+                    developer, designer, writer, or privacy advocate, there are many ways to contribute.
+                </p>
+
+                <!-- Involvement Options -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20">
+                        <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <i class="fab fa-github text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Contribute Code</h3>
+                        <p class="text-white/80 text-sm mb-4">Help improve the tool, fix bugs, or add new features on
+                            GitHub.</p>
+                        <a href="https://github.com/geotageditor" target="_blank"
+                            class="text-white font-medium hover:underline">View Repository →</a>
+                    </div>
+
+                    <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20">
+                        <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-book text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Improve Documentation</h3>
+                        <p class="text-white/80 text-sm mb-4">Help create better guides, tutorials, and documentation
+                            for users.</p>
+                        <a href="guides.html" class="text-white font-medium hover:underline">View Guides →</a>
+                    </div>
+
+                    <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20">
+                        <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-lightbulb text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Share Feedback</h3>
+                        <p class="text-white/80 text-sm mb-4">Suggest features, report issues, or share your experience
+                            with the tool.</p>
+                        <a href="mailto:support@geotageditor.com" class="text-white font-medium hover:underline">Email
+                            Us →</a>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://github.com/geotageditor" target="_blank"
+                        class="group relative px-8 py-4 bg-white text-indigo-700 font-bold rounded-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden text-center">
+                        <div class="relative z-10 flex items-center justify-center">
+                            <i class="fab fa-github text-xl mr-3"></i>
+                            <div>
+                                <div class="text-lg font-bold">Star on GitHub</div>
+                                <div class="text-sm font-medium text-gray-600">Support our open-source work</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="mailto:support@geotageditor.com"
+                        class="px-8 py-4 bg-transparent border-2 border-white/40 text-white font-bold rounded-2xl hover:bg-white/10 transition-all duration-300 hover:border-white/60 text-center">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-envelope mr-3 text-lg"></i>
+                            <div>
+                                <div class="text-lg font-bold">Contact Team</div>
+                                <div class="text-sm font-medium opacity-90">Questions & partnerships</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="section-container">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="glass-card p-8 md:p-12 rounded-3xl">
+                    <h2 class="section-title">Experience Privacy-First Editing</h2>
+                    <p class="section-subtitle">Now that you know our story and values, try our geotag editor for
+                        yourself. See how it feels to use a tool that truly respects your privacy.</p>
+
+                    <div class="mt-8">
+                        <a href="tool.html" class="btn-primary text-lg py-4 px-10 inline-block">
+                            <i class="fas fa-map-marker-alt mr-3"></i>
+                            Try Geotag Editor Now
+                        </a>
+                        <p class="text-gray-500 text-sm mt-4">No sign-up • No tracking • 100% private</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative bg-gray-900 text-gray-300">
+        <!-- Wave Divider -->
+        <div class="footer-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+                <!-- Brand & Description -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Geotag Editor</h3>
+                            <div class="text-sm text-indigo-300 font-medium">GeotagEditor.com</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        Free online tool to add, edit or remove GPS metadata from photos.
+                        100% browser-based processing ensures your photos never leave your device.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-twitter text-gray-300"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-github text-gray-300"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-linkedin-in text-gray-300"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="tool.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Editor Tool
+                            </a>
+                        </li>
+                        <li>
+                            <a href="features.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Features
+                            </a>
+                        </li>
+                        <li>
+                            <a href="how-it-works.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                How It Works
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group active text-indigo-300">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i>
+                                About
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Resources & Legal -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Resources & Legal</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="privacy-policy.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="terms.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Contact Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="sitemap.xml"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Sitemap
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Privacy Badge -->
+                    <div class="mt-8 p-4 bg-gray-800 rounded-lg border border-gray-700">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-green-900/30 flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-green-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-white font-medium">100% Secure</div>
+                                <div class="text-xs text-gray-400">All processing happens in your browser</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="mt-12 pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-500 text-sm">
+                        © 2025 <span class="text-white font-medium">GeotagEditor.com</span> • All Rights Reserved
+                    </div>
+                    <div class="mt-4 md:mt-0 text-gray-500 text-sm">
+                        Made with <i class="fas fa-heart text-red-400 mx-1"></i> for photographers worldwide
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('scale-y-0')) {
+                mobileMenu.classList.remove('scale-y-0', 'opacity-0');
+                mobileMenu.classList.add('scale-y-100', 'opacity-100');
+            } else {
+                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
+                mobileMenu.classList.add('scale-y-0', 'opacity-0');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
+                mobileMenu.classList.add('scale-y-0', 'opacity-0');
+            }
+        });
+
+        // Set active nav link based on current page
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileLinks = document.querySelectorAll('#mobileMenu a');
+
+            // Update desktop nav
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                    link.classList.add('text-indigo-600');
+                } else {
+                    link.classList.remove('active');
+                    link.classList.remove('text-indigo-600');
+                }
+            });
+
+            // Update mobile nav
+            mobileLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                    link.classList.add('bg-indigo-50', 'text-indigo-700');
+                } else {
+                    link.classList.remove('active');
+                    link.classList.remove('bg-indigo-50', 'text-indigo-700');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,143 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Primary Meta Tags -->
     <title>Geotag Editor - Free Online GPS Photo Editing Tool | GeotagEditor.com</title>
-    <meta name="description" content="Geotag Editor by GeotagEditor.com: Add, edit, or remove GPS coordinates from JPEG photos. 100% browser-based, no uploads, completely private.">
-    <meta name="keywords" content="geotag editor, GPS photo editor, add GPS coordinates to photos, edit geotags, remove location data, geotag editor online, JPEG GPS editor, photo location editor">
-    
+    <meta name="description"
+        content="Geotag Editor by GeotagEditor.com: Add, edit, or remove GPS coordinates from JPEG photos. 100% browser-based, no uploads, completely private.">
+    <meta name="keywords"
+        content="geotag editor, GPS photo editor, add GPS coordinates to photos, edit geotags, remove location data, geotag editor online, JPEG GPS editor, photo location editor">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://geotageditor.com/">
     <meta property="og:title" content="Geotag Editor - Edit GPS Data in Photos Online">
-    <meta property="og:description" content="Free geotag editing tool by GeotagEditor.com - Add, edit, or remove GPS coordinates from photos in your browser.">
-    <meta property="og:image" content="https://geotageditor.com/images/og-image.jpg">
-    
+    <meta property="og:description"
+        content="Free geotag editing tool by GeotagEditor.com - Add, edit, or remove GPS coordinates from photos in your browser.">
+    <meta property="og:image" content="https://geotageditor.com/assets/images/og-image.jpg">
+
+    <!-- FAVICON -->
+     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-geotageditor.com.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-geotageditor.com.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-geotageditor.com.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-geotageditor.com.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-geotageditor.com.png">
+<link rel="shortcut icon" href="assets/images/favicon-geotageditor.com.png">
+
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://geotageditor.com/">
     <meta property="twitter:title" content="Geotag Editor - Edit GPS Data in Photos Online">
-    <meta property="twitter:description" content="Free geotag editing tool by GeotagEditor.com - Add, edit, or remove GPS coordinates from photos in your browser.">
-    <meta property="twitter:image" content="https://geotageditor.com/images/twitter-image.jpg">
-    
+    <meta property="twitter:description"
+        content="Free geotag editing tool by GeotagEditor.com - Add, edit, or remove GPS coordinates from photos in your browser.">
+    <meta property="twitter:image" content="https://geotageditor.com/assets/images/twitter-image.jpg">
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://geotageditor.com">
-    
+
+    <!-- External Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/piexifjs"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Geotag Editor - Free Online GPS Photo Editing Tool",
-        "url": "https://geotageditor.com",
-        "applicationCategory": "MultimediaApplication",
-        "operatingSystem": "Any",
-        "description": "Free online tool to add, edit, or remove GPS metadata from JPEG photos",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "creator": {
-            "@type": "Organization",
-            "name": "GeotagEditor.com"
-        }
-    }
-    </script>
-    
+
+    <!-- Custom CSS -->
     <style>
         :root {
-            --primary: #4f46e5;
+            --primary-color: #4f46e5;
             --primary-dark: #4338ca;
-            --secondary: #7c3aed;
-            --light: #f8fafc;
-            --dark: #1e293b;
+            --primary-light: #e0e7ff;
         }
-        
+
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f4ff 0%, #f8fafc 100%);
-            color: var(--dark);
-            transition: all 0.3s ease;
-            min-height: 100vh;
         }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+
+        .header-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        
-        .drop-zone {
-            border: 2px dashed #cbd5e0;
-            transition: all 0.3s ease;
+
+        .header-texture {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
-        
-        .drop-zone.active {
-            border-color: var(--primary);
-            background-color: rgba(79, 70, 229, 0.05);
+
+        .shadow-soft {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
-        
-        .btn-primary {
-            background: var(--primary);
+
+        .shadow-deep {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .transition-all {
             transition: all 0.3s ease;
         }
-        
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .feature-card {
-            transition: all 0.3s ease;
+
+        .hover-lift:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .ad-container {
-            background: #f1f5f9;
-            border-radius: 12px;
-            min-height: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 14px;
-        }
-        
-        .step-card {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .step-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
-        
+
         .nav-link {
             position: relative;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -145,773 +100,419 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: var(--primary-color);
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
-        
-        .current-page {
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        .current-page::after {
+
+        .nav-link.active::after {
             width: 100%;
         }
 
-        .page-section {
-            display: none;
-        }
-
-        .page-section.active {
-            display: block;
-        }
-
-        .mobile-menu {
-            display: none;
+        .footer-wave {
             position: absolute;
-            top: 100%;
-            right: 0;
-            width: 200px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 100;
-        }
-
-        .mobile-menu.active {
-            display: block;
-        }
-        
-        /* Map Styles */
-        #map {
-            height: 300px;
-            width: 100%;
-            border-radius: 12px;
-            z-index: 1;
-        }
-        
-        .leaflet-container {
-            background: #f8fafc;
-        }
-        
-        .coordinates-container {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-        
-        .map-container {
-            position: relative;
-            margin-top: 20px;
-        }
-        
-        .map-controls {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 1000;
-            display: flex;
-            gap: 8px;
-        }
-        
-        .map-btn {
-            background: white;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 12px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            cursor: pointer;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .location-marker {
-            background-color: var(--primary);
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            border: 3px solid white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-        
-        .input-with-map {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .input-with-map {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* New UI Improvements */
-        .progress-bar {
-            height: 4px;
-            background: #e2e8f0;
-            border-radius: 2px;
-            overflow: hidden;
-            margin: 20px 0;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .tooltip .tooltip-text {
-            visibility: hidden;
-            width: 200px;
-            background-color: #1e293b;
-            color: white;
-            text-align: center;
-            border-radius: 6px;
-            padding: 8px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 12px;
-        }
-        
-        .tooltip:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-        }
-        
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 16px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transform: translateX(150%);
-            transition: transform 0.3s ease;
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        .notification.success {
-            background: #dcfce7;
-            color: #166534;
-            border-left: 4px solid #22c55e;
-        }
-        
-        .notification.error {
-            background: #fee2e2;
-            color: #991b1b;
-            border-left: 4px solid #ef4444;
-        }
-        
-        .notification.info {
-            background: #dbeafe;
-            color: #1e40af;
-            border-left: 4px solid #3b82f6;
-        }
-        
-        .notification.warning {
-            background: #fef3c7;
-            color: #92400e;
-            border-left: 4px solid #f59e0b;
-        }
-        
-        .step-indicator {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-        
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            width: 120px;
-        }
-        
-        .step:not(:last-child):after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 60px;
-            width: 60px;
-            height: 2px;
-            background: #e2e8f0;
-        }
-        
-        .step.active:not(:last-child):after {
-            background: var(--primary);
-        }
-        
-        .step-number {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #64748b;
-        }
-        
-        .step.active .step-number {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .step-label {
-            font-size: 14px;
-            color: #64748b;
-            text-align: center;
-        }
-        
-        .step.active .step-label {
-            color: var(--primary);
-            font-weight: 500;
-        }
-        
-        .file-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: #f8fafc;
-            border-radius: 8px;
-            margin-bottom: 16px;
-        }
-        
-        .file-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        
-        .file-details {
-            flex: 1;
-        }
-        
-        .file-name {
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-        
-        .file-size {
-            font-size: 12px;
-            color: #64748b;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .action-btn {
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .action-btn.primary {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .action-btn.secondary {
-            background: #f1f5f9;
-            color: #475569;
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-1px);
-        }
-        
-        .coordinates-display {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-        
-        .coordinate-box {
-            flex: 1;
-            background: #f8fafc;
-            border-radius: 8px;
-            padding: 12px;
-        }
-        
-        .coordinate-label {
-            font-size: 12px;
-            color: #64748b;
-            margin-bottom: 4px;
-        }
-        
-        .coordinate-value {
-            font-weight: 500;
-        }
-        
-        .coordinate-value.empty {
-            color: #94a3b8;
-            font-style: italic;
-        }
-        
-        .location-actions {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-        
-        .location-btn {
-            flex: 1;
-            padding: 10px;
-            border-radius: 8px;
-            background: #f1f5f9;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .location-btn:hover {
-            background: #e2e8f0;
-        }
-        
-        .location-btn.primary {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .location-btn.primary:hover {
-            background: var(--primary-dark);
-        }
-        
-        .process-section {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid #e2e8f0;
-        }
-        
-        .process-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-        
-        .process-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-        }
-        
-        .process-btn:disabled {
-            background: #cbd5e0;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-        
-        .status-message {
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 16px;
-            text-align: center;
-            font-size: 14px;
-        }
-        
-        .status-message.info {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-        
-        .status-message.success {
-            background: #dcfce7;
-            color: #166534;
-        }
-        
-        .status-message.warning {
-            background: #fef3c7;
-            color: #92400e;
-        }
-        
-        .status-message.error {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-        
-        .section-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: #1e293b;
-        }
-        
-        .section-subtitle {
-            font-size: 16px;
-            color: #64748b;
-            margin-bottom: 24px;
-        }
-        
-        .hero-section {
-            padding: 60px 0;
-            text-align: center;
-        }
-        
-        .hero-title {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 16px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero-subtitle {
-            font-size: 20px;
-            color: #64748b;
-            max-width: 600px;
-            margin: 0 auto 32px;
-        }
-        
-        .hero-cta {
-            display: inline-flex;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-        
-        .hero-image {
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        /* Filename Modal */
-        .modal-overlay {
-            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .modal {
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-        }
-        
-        .modal-overlay.active .modal {
-            transform: translateY(0);
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .modal-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1e293b;
-        }
-        
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #64748b;
-        }
-        
-        .modal-body {
-            margin-bottom: 24px;
-        }
-        
-        .modal-footer {
-            display: flex;
-            gap: 12px;
-            justify-content: flex-end;
-        }
-        
-        .filename-input {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.2s;
+            overflow: hidden;
+            line-height: 0;
         }
-        
-        .filename-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+
+        .footer-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 40px;
         }
-        
-        .filename-suggestion {
-            font-size: 14px;
-            color: #64748b;
-            margin-top: 8px;
+
+        .footer-wave .shape-fill {
+            fill: #ffffff;
         }
-        
-        .filename-suggestion span {
-            color: var(--primary);
-            cursor: pointer;
-            text-decoration: underline;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: none;
-        }
-        
-        .btn-primary:hover {
-            background: var(--primary-dark);
-        }
-        
-        .btn-secondary {
-            background: #f1f5f9;
-            color: #475569;
-            border: 1px solid #d1d5db;
-        }
-        
-        .btn-secondary:hover {
-            background: #e2e8f0;
-        }
-        
-        /* Lazy loading for images */
-        img[loading="lazy"] {
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        img[loading="lazy"].loaded {
-            opacity: 1;
-        }
-        
-        /* Brand styling */
-        .brand-container {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .brand-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e293b;
-            line-height: 1.2;
-        }
-        
-        .brand-domain {
-            font-size: 0.75rem;
-            color: #6b7280;
-            margin-top: -2px;
-            letter-spacing: 0.5px;
+
+        .bg-grid-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
     </style>
 </head>
-<body>
-    <!-- Notification System -->
-    <div id="notification" class="notification">
-        <div class="notification-icon"></div>
-        <div class="notification-message"></div>
-    </div>
 
-    <!-- Filename Modal -->
-    <div id="filenameModal" class="modal-overlay">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Save Your Image</h3>
-                <button class="modal-close" id="modalClose">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p class="mb-4 text-gray-600">Enter a filename for your processed image:</p>
-                <input type="text" id="filenameInput" class="filename-input" placeholder="Enter filename..." />
-                <div class="filename-suggestion">
-                    Suggestion: <span id="suggestedFilename">geotag_edited_image.jpg</span>
+<body class="bg-gray-50">
+    <!-- Notification System -->
+    <div id="notification"
+        class="fixed top-4 right-4 z-50 max-w-sm w-full bg-white rounded-xl shadow-deep p-4 transform translate-x-full transition-transform duration-300">
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <div class="notification-icon w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
+                    <i class="fas fa-check text-green-600 text-xs"></i>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="modalCancel">Cancel</button>
-                <button class="btn btn-primary" id="modalConfirm">Save Image</button>
+            <div class="ml-3 w-0 flex-1">
+                <p class="notification-message text-sm font-medium text-gray-900">Notification message here</p>
+            </div>
+            <div class="ml-4 flex-shrink-0 flex">
+                <button id="notification-close"
+                    class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">Close</span>
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
         </div>
     </div>
 
     <!-- Header -->
-    <header class="sticky top-0 z-50 glass-card shadow-sm">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                    </svg>
-                    <div class="brand-container">
-                        <div class="brand-name">Geotag Editor</div>
-                        <div class="brand-domain">GeotagEditor.com</div>
-                    </div>
-                </div>
-                
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-gray-600 current-page page-link" data-page="home">Home</a>
-                    <a href="#tool" class="nav-link text-gray-600 page-link" data-page="tool">Editor Tool</a>
-                    <a href="#features" class="nav-link text-gray-600 page-link" data-page="features">Features</a>
-                    <a href="#how-it-works" class="nav-link text-gray-600 page-link" data-page="how-it-works">How It Works</a>
-                    <a href="#guides" class="nav-link text-gray-600 page-link" data-page="guides">Guides</a>
-                    <a href="#faq" class="nav-link text-gray-600 page-link" data-page="faq">FAQ</a>
-                    <a href="#about" class="nav-link text-gray-600 page-link" data-page="about">About</a>
-                    <a href="#privacy" class="nav-link text-gray-600 page-link" data-page="privacy">Privacy</a>
-                </nav>
-                
-                <div class="flex items-center space-x-4 relative">
-                    <button id="mobileMenuButton" class="md:hidden p-2 text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                    <div id="mobileMenu" class="mobile-menu">
-                        <div class="py-2">
-                            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 page-link" data-page="home">Home</a>
-                            <a href="#tool" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 page-link" data-page="tool">Editor Tool</a>
-                            <a href="#features" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 page-link" data-page="features">Features</a>
-                            <a href="#how-it-works" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 page-link" data-page="how-it-works">How It Works</a>
-                            <a href="#guides" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 page-link" data-page="guides">Guides</a>
-                            <a href="#faq" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 page-link" data-page="faq">FAQ</a>
-                            <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 page-link" data-page="about">About</a>
-                            <a href="#privacy" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 page-link" data-page="privacy">Privacy</a>
+    <header class="sticky top-0 z-50 bg-white shadow-soft transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white">
                         </div>
                     </div>
+                    <div>
+                        <a href="index.html"
+                            class="text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors">Geotag
+                            Editor</a>
+                        <div class="text-xs text-gray-500 font-medium">by GeotagEditor.com</div>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <a href="index.html"
+                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fa-solid fa-house mr-2 text-indigo-500"></i>
+                        Home
+                    </a>
+
+                    <a href="tool.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-edit mr-2 text-sm"></i>Editor Tool
+                    </a>
+                    <a href="features.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-star mr-2 text-sm"></i>Features
+                    </a>
+                    <a href="how-it-works.html"
+                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-play-circle mr-2 text-sm"></i>How It Works
+                    </a>
+                    <a href="guides.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-book mr-2 text-sm"></i>Guides
+                    </a>
+                    <a href="faq.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-question-circle mr-2 text-sm"></i>FAQ
+                    </a>
+                    <a href="about.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-info-circle mr-2 text-sm"></i>About
+                    </a>
+                    <a href="tool.html"
+                        class="ml-4 px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg hover-lift transition-all shadow-md hover:shadow-lg">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Start Editing
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton"
+                    class="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 hover-lift transition-all">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="lg:hidden bg-white border-t border-gray-100 shadow-lg transform origin-top transition-all duration-300 scale-y-0 opacity-0 absolute w-full z-40">
+            <div class="px-4 py-6 space-y-1 bg-grid-pattern">
+                <a href="index.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all active bg-gray-50">
+                    <i class="fa-solid fa-home mr-3 text-indigo-500"></i>Home
+                </a>
+                <a href="tool.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-edit mr-3 text-indigo-500"></i>Editor Tool
+                </a>
+                <a href="features.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-star mr-3 text-indigo-500"></i>Features
+                </a>
+                <a href="how-it-works.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-play-circle mr-3 text-indigo-500"></i>How It Works
+                </a>
+                <a href="guides.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-book mr-3 text-indigo-500"></i>Guides
+                </a>
+                <a href="faq.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-question-circle mr-3 text-indigo-500"></i>FAQ
+                </a>
+                <a href="about.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-info-circle mr-3 text-indigo-500"></i>About
+                </a>
+                <a href="privacy-policy.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-shield-alt mr-3 text-indigo-500"></i>Privacy Policy
+                </a>
+                <div class="pt-4 mt-4 border-t border-gray-100">
+                    <a href="tool.html"
+                        class="block text-center px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg hover-lift transition-all shadow-md">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Start Editing GPS Data
+                    </a>
                 </div>
             </div>
         </div>
     </header>
+    <!-- Hero Section -->
+    <section class="relative py-20 lg:py-28 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 z-0">
+            <div
+                class="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full filter blur-3xl opacity-40 -translate-x-1/2 -translate-y-1/2">
+            </div>
+            <div
+                class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-blue-50 to-purple-50 rounded-full filter blur-3xl opacity-30 translate-x-1/3 translate-y-1/3">
+            </div>
+        </div>
 
-    <!-- Home Page -->
-    <section id="home" class="page-section active">
-        <div class="hero-section">
-            <div class="container mx-auto px-4">
-                <h1 class="hero-title">Geotag Editor - Edit GPS Data in Photos</h1>
-                <p class="hero-subtitle">Free online tool by GeotagEditor.com to add, edit, or remove GPS coordinates from your JPEG images. 100% browser-based - your photos never leave your device.</p>
-                
-                <div class="hero-cta">
-                    <a href="#tool" class="btn-primary text-white font-medium py-3 px-8 rounded-xl inline-block page-link" data-page="tool">Try Geotag Editor Tool</a>
-                    <a href="#how-it-works" class="bg-white text-gray-800 font-medium py-3 px-8 rounded-xl inline-block border border-gray-300 page-link" data-page="how-it-works">Learn How to Edit Geotags</a>
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Hero Content -->
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <div
+                    class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-indigo-500 mr-2 animate-pulse"></span>
+                    <span class="text-sm font-medium text-indigo-700">100% Browser-Based • No Uploads Required</span>
                 </div>
-                
-                <div class="hero-image">
-                    <div class="glass-card p-6">
-                        <div class="bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl p-4">
-                            <div class="bg-white rounded-lg p-4 shadow-md">
-                                <div class="flex space-x-2 mb-4">
+
+                <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                    Edit GPS Data in Photos
+                    <span class="block gradient-text">With Complete Privacy</span>
+                </h1>
+
+                <p class="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+                    Free online tool by <span class="font-semibold text-indigo-600">GeotagEditor.com</span> to add,
+                    edit, or remove GPS coordinates from your JPEG images.
+                    All processing happens locally in your browser - your photos never leave your device.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                    <a href="tool.html"
+                        class="group relative px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover-lift transition-all duration-300 shadow-lg hover:shadow-xl">
+                        <span class="flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt mr-3"></i>
+                            Try Geotag Editor Tool
+                            <i
+                                class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                        <div
+                            class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </a>
+
+                    <a href="how-it-works.html"
+                        class="group px-8 py-4 bg-white text-gray-800 font-semibold rounded-xl border-2 border-gray-200 hover:border-indigo-300 hover-lift transition-all duration-300 shadow-md hover:shadow-lg">
+                        <span class="flex items-center justify-center">
+                            <i class="fas fa-play-circle mr-3 text-indigo-500"></i>
+                            Learn How to Edit Geotags
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Image/Preview -->
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Glass Card Container -->
+                    <div class="glass-card p-8 rounded-2xl border border-white/50 shadow-2xl">
+                        <!-- Browser Window Style -->
+                        <div class="bg-white rounded-xl shadow-deep overflow-hidden">
+                            <!-- Browser Header -->
+                            <div
+                                class="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
+                                <div class="flex items-center space-x-2">
                                     <div class="w-3 h-3 rounded-full bg-red-400"></div>
                                     <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
                                     <div class="w-3 h-3 rounded-full bg-green-400"></div>
                                 </div>
-                                <div class="border border-gray-200 rounded-lg p-4 mb-4">
-                                    <div class="flex items-center space-x-3 mb-3">
-                                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
-                                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="font-medium text-gray-800">vacation_photo.jpg</div>
-                                            <div class="text-xs text-gray-500">2.4 MB • JPEG with GPS data</div>
+                                <div class="text-sm text-gray-500 font-medium">geotageditor.com/tool</div>
+                                <div class="w-20"></div>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="p-8">
+                                <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8">
+                                    <!-- Left Panel - Image Preview -->
+                                    <div class="lg:w-2/5">
+                                        <div
+                                            class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100">
+                                            <div
+                                                class="aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100 relative">
+                                                <div class="absolute inset-0 flex items-center justify-center">
+                                                    <div class="text-center">
+                                                        <div
+                                                            class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
+                                                            <svg class="w-8 h-8 text-indigo-500" fill="none"
+                                                                stroke="currentColor" viewBox="0 0 24 24"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                                                </path>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="text-sm font-medium text-gray-700">
+                                                            vacation_photo.jpg</div>
+                                                        <div class="text-xs text-gray-500 mt-1">2.4 MB • JPEG with GPS
+                                                            data</div>
+                                                    </div>
+                                                </div>
+                                                <!-- Location Pin -->
+                                                <div
+                                                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                                    <div class="relative">
+                                                        <div
+                                                            class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center animate-bounce">
+                                                            <i class="fas fa-map-pin text-white text-sm"></i>
+                                                        </div>
+                                                        <div
+                                                            class="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-red-300">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <div class="text-xs text-gray-500 mb-1">Latitude</div>
-                                            <div class="text-sm font-medium text-gray-800">34.052235</div>
-                                        </div>
-                                        <div>
-                                            <div class="text-xs text-gray-500 mb-1">Longitude</div>
-                                            <div class="text-sm font-medium text-gray-800">-118.243683</div>
+
+                                    <!-- Right Panel - GPS Editor -->
+                                    <div class="lg:w-3/5">
+                                        <div class="space-y-6">
+                                            <div>
+                                                <h3 class="text-xl font-bold text-gray-900 mb-2">Edit GPS Coordinates
+                                                </h3>
+                                                <p class="text-gray-600">Update the location metadata for your photo</p>
+                                            </div>
+
+                                            <!-- GPS Coordinates Inputs -->
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div class="space-y-3">
+                                                    <label class="block">
+                                                        <span
+                                                            class="text-sm font-medium text-gray-700 mb-1 flex items-center">
+                                                            <i class="fas fa-globe-americas mr-2 text-indigo-500"></i>
+                                                            Latitude
+                                                        </span>
+                                                        <div class="relative">
+                                                            <input type="text" value="34.052235"
+                                                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-mono">
+                                                            <div
+                                                                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                                                <i class="fas fa-crosshairs"></i>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <div class="flex items-center text-sm text-gray-500">
+                                                        <i class="fas fa-info-circle mr-2 text-blue-500"></i>
+                                                        Range: -90° to 90°
+                                                    </div>
+                                                </div>
+
+                                                <div class="space-y-3">
+                                                    <label class="block">
+                                                        <span
+                                                            class="text-sm font-medium text-gray-700 mb-1 flex items-center">
+                                                            <i class="fas fa-globe mr-2 text-indigo-500"></i>
+                                                            Longitude
+                                                        </span>
+                                                        <div class="relative">
+                                                            <input type="text" value="-118.243683"
+                                                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-mono">
+                                                            <div
+                                                                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                                                <i class="fas fa-crosshairs"></i>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <div class="flex items-center text-sm text-gray-500">
+                                                        <i class="fas fa-info-circle mr-2 text-blue-500"></i>
+                                                        Range: -180° to 180°
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Location Preview -->
+                                            <div
+                                                class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4 border border-indigo-100">
+                                                <div class="flex items-center justify-between">
+                                                    <div class="flex items-center space-x-3">
+                                                        <div
+                                                            class="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                                                            <i class="fas fa-map-marked-alt text-indigo-600"></i>
+                                                        </div>
+                                                        <div>
+                                                            <div class="font-medium text-gray-800">Los Angeles,
+                                                                California</div>
+                                                            <div class="text-sm text-gray-600">Detected from coordinates
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button
+                                                        class="text-indigo-600 hover:text-indigo-800 font-medium text-sm">
+                                                        <i class="fas fa-map mr-1"></i>
+                                                        Open in Maps
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <!-- Action Buttons -->
+                                            <div class="flex flex-col sm:flex-row gap-3 pt-4">
+                                                <button
+                                                    class="flex-1 px-6 py-3 bg-gray-100 text-gray-800 font-medium rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                                    <i class="fas fa-times mr-2"></i>
+                                                    Clear GPS Data
+                                                </button>
+                                                <button
+                                                    class="flex-1 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-lg hover-lift transition-all flex items-center justify-center">
+                                                    <i class="fas fa-save mr-2"></i>
+                                                    Update GPS & Download
+                                                </button>
+                                            </div>
+
+                                            <!-- Privacy Note -->
+                                            <div class="pt-4 border-t border-gray-100">
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <i class="fas fa-shield-alt text-green-500 mr-2"></i>
+                                                    <span>Your photo is processed locally and never uploaded to any
+                                                        server</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="flex space-x-2">
-                                    <button class="flex-1 bg-gray-100 text-gray-800 py-2 rounded-lg text-sm font-medium">Cancel</button>
-                                    <button class="flex-1 bg-indigo-600 text-white py-2 rounded-lg text-sm font-medium">Update GPS Data</button>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-green-400 animate-ping opacity-75">
+                        </div>
+                        <div
+                            class="absolute -bottom-3 -left-3 w-8 h-8 rounded-full bg-blue-400 animate-pulse opacity-50">
                         </div>
                     </div>
                 </div>
@@ -920,1094 +521,457 @@
     </section>
 
     <!-- Ad Container -->
-    <!-- <div class="container mx-auto px-4 mb-12">
-        <div class="ad-container">
-            Advertisement - Your Ad Here
-        </div>
-    </div> -->
-
-    <!-- Tool Section -->
-    <section id="tool" class="page-section py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="section-title">Geotag Editor Tool - Edit GPS Data in Photos</h2>
-                <p class="section-subtitle">Use our free geotag editor to modify GPS coordinates in your JPEG images directly in your browser. No server uploads, complete privacy guaranteed.</p>
+    <div class="container mx-auto px-4 my-16">
+        <div class="relative">
+            <!-- Ad Label -->
+            <div
+                class="absolute -top-2 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-gray-100 rounded-full border border-gray-200">
+                <span class="text-xs font-medium text-gray-500">ADVERTISEMENT</span>
             </div>
-            
-            <div class="max-w-5xl mx-auto">
-                <div class="glass-card p-6 md:p-8">
-                    <!-- Step Indicator -->
-                    <div class="step-indicator">
-                        <div class="step active" id="step-1">
-                            <div class="step-number">1</div>
-                            <div class="step-label">Upload Image</div>
-                        </div>
-                        <div class="step" id="step-2">
-                            <div class="step-number">2</div>
-                            <div class="step-label">Set Coordinates</div>
-                        </div>
-                        <div class="step" id="step-3">
-                            <div class="step-number">3</div>
-                            <div class="step-label">Download</div>
-                        </div>
-                    </div>
-                    
-                    <!-- File Upload Area -->
-                    <div class="mb-8" id="upload-section">
-                        <label class="block text-lg font-medium text-gray-800 mb-4">Upload Your JPEG Image</label>
-                        <div 
-                            id="dropZone" 
-                            class="drop-zone rounded-xl p-8 text-center cursor-pointer bg-gray-50 hover:bg-gray-100 transition-all"
-                        >
-                            <input type="file" id="fileInput" class="hidden" accept="image/jpeg,image/jpg" />
-                            <div class="flex flex-col items-center justify-center">
-                                <svg class="w-12 h-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <p class="text-gray-600 font-medium">Drag & drop your JPEG image here</p>
-                                <p class="text-gray-500 text-sm mt-2">or click to browse files</p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- File Info and Preview -->
-                    <div id="file-info-section" class="hidden">
-                        <div class="file-info">
-                            <div class="file-icon">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <div class="file-details">
-                                <div class="file-name" id="file-name">vacation_photo.jpg</div>
-                                <div class="file-size" id="file-size">2.4 MB</div>
-                            </div>
-                            <div class="action-buttons">
-                                <button class="action-btn secondary" id="change-file">Change Image</button>
-                            </div>
-                        </div>
-                        
-                        <!-- Preview Thumbnail -->
-                        <div class="mb-8">
-                            <label class="block text-lg font-medium text-gray-800 mb-4">Image Preview</label>
-                            <div class="rounded-xl overflow-hidden border border-gray-200 bg-white p-4">
-                                <img id="previewImage" class="w-full max-h-64 object-contain rounded-lg" alt="Image preview for geotag editing" loading="lazy" />
-                            </div>
-                        </div>
-                        
-                        <!-- Current GPS Data -->
-                        <div class="mb-8">
-                            <label class="block text-lg font-medium text-gray-800 mb-4">Current GPS Data</label>
-                            <div class="coordinates-display">
-                                <div class="coordinate-box">
-                                    <div class="coordinate-label">Latitude</div>
-                                    <div class="coordinate-value empty" id="current-lat">No GPS data found</div>
-                                </div>
-                                <div class="coordinate-box">
-                                    <div class="coordinate-label">Longitude</div>
-                                    <div class="coordinate-value empty" id="current-lon">No GPS data found</div>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Ad Content -->
+            <div
+                class="ad-container bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-dashed border-gray-300 rounded-2xl p-12 text-center hover:border-gray-400 transition-colors">
+                <div class="max-w-md mx-auto">
+                    <div
+                        class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
+                        <i class="fas fa-ad text-yellow-500 text-2xl"></i>
                     </div>
-
-                    <!-- GPS Coordinates Input with Map -->
-                    <div id="coordinates-section" class="hidden">
-                        <label class="block text-lg font-medium text-gray-800 mb-4">Set New GPS Coordinates</label>
-                        
-                        <div class="input-with-map">
-                            <div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                    <div>
-                                        <label for="lat" class="block text-sm text-gray-600 mb-2">Latitude</label>
-                                        <input 
-                                            type="number" 
-                                            id="lat" 
-                                            step="any" 
-                                            placeholder="e.g. 34.052235" 
-                                            class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label for="lon" class="block text-sm text-gray-600 mb-2">Longitude</label>
-                                        <input 
-                                            type="number" 
-                                            id="lon" 
-                                            step="any" 
-                                            placeholder="e.g. -118.243683" 
-                                            class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
-                                        />
-                                    </div>
-                                </div>
-                                
-                                <div class="location-actions">
-                                    <button id="useCurrentLocation" class="location-btn">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        </svg>
-                                        Use My Location
-                                    </button>
-                                    <button id="clearCoordinates" class="location-btn">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                        </svg>
-                                        Clear Coordinates
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <!-- Map Container -->
-                            <div class="map-container">
-                                <div id="map"></div>
-                                <div class="map-controls">
-                                    <button id="locateMe" class="map-btn">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Process Section -->
-                    <div class="process-section">
-                        <button 
-                            id="processBtn" 
-                            class="process-btn"
-                            disabled
-                        >
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4 4m0 0l-4-4m4 4V4"></path>
-                            </svg>
-                            Process Image & Download
-                        </button>
-                        
-                        <div id="status" class="status-message info">
-                            Upload a JPEG image to begin editing GPS data
-                        </div>
-                    </div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Your Ad Here</h3>
+                    <p class="text-gray-500 mb-6">Reach thousands of photographers and geotag enthusiasts</p>
+                    <a href="#" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium">
+                        <span>Advertise with us</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Ad Container -->
-    <!-- <div class="container mx-auto px-4 my-12">
-        <div class="ad-container">
-            Advertisement - Your Ad Here
-        </div>
-    </div> -->
-
-    <!-- Features Section -->
-    <section id="features" class="page-section py-16">
+    <!-- Features Preview -->
+    <section class="py-20 bg-gradient-to-b from-white to-gray-50">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="section-title">Why Choose Geotag Editor?</h2>
-                <p class="section-subtitle">Our geotag editing tool offers everything you need to manage GPS metadata in your photos with complete privacy and ease.</p>
+            <!-- Section Header -->
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <div
+                    class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 mb-4">
+                    <i class="fas fa-star text-indigo-500 mr-2"></i>
+                    <span class="text-sm font-medium text-indigo-700">Why Choose Geotag Editor?</span>
+                </div>
+
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                    Everything You Need to
+                    <span class="gradient-text">Manage Photo Locations</span>
+                </h2>
+
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Our geotag editing tool offers comprehensive GPS metadata management with complete privacy and ease
+                    of use.
+                </p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                 <!-- Feature 1 -->
-                <div class="feature-card glass-card p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                        </svg>
+                <div
+                    class="group feature-card bg-white rounded-2xl p-8 border border-gray-100 hover-lift transition-all duration-300 hover:border-indigo-200 hover:shadow-xl">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-green-400 flex items-center justify-center">
+                            <i class="fas fa-bolt text-white text-xs"></i>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Auto Detect GPS Data</h3>
-                    <p class="text-gray-600">Automatically detects existing GPS metadata in your photos and displays current coordinates for easy editing.</p>
-                </div>
-                
-                <!-- Feature 2 -->
-                <div class="feature-card glass-card p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Add or Edit Geotags</h3>
-                    <p class="text-gray-600">Easily add new GPS coordinates or replace existing ones with your preferred location data using our geotag editor.</p>
-                </div>
-                
-                <!-- Feature 3 -->
-                <div class="feature-card glass-card p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">100% Private & Secure</h3>
-                    <p class="text-gray-600">Your images never leave your browser. All geotag editing happens locally on your device for maximum security.</p>
-                </div>
-                
-                <!-- Feature 4 -->
-                <div class="feature-card glass-card p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4 4m0 0l-4-4m4 4V4"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Instant Download</h3>
-                    <p class="text-gray-600">Get your updated image immediately after processing with the new GPS metadata embedded. No waiting, no watermarks.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="page-section py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="section-title">How to Edit GPS Data with Geotag Editor</h2>
-                <p class="section-subtitle">Editing geotags in your photos is simple with our intuitive three-step process. Perfect for both beginners and professionals.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <!-- Step 1 -->
-                <div class="step-card glass-card p-6 rounded-xl text-center">
-                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4 text-indigo-600 font-bold text-xl">1</div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Upload JPEG Image</h3>
-                    <p class="text-gray-600">Drag and drop your JPEG image or click to browse your files. Our geotag editor will automatically detect any existing GPS data.</p>
-                </div>
-                
-                <!-- Step 2 -->
-                <div class="step-card glass-card p-6 rounded-xl text-center">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 text-purple-600 font-bold text-xl">2</div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Enter GPS Coordinates</h3>
-                    <p class="text-gray-600">Input the latitude and longitude you want to add to your image. Use decimal format for easy entry or click directly on the interactive map.</p>
-                </div>
-                
-                <!-- Step 3 -->
-                <div class="step-card glass-card p-6 rounded-xl text-center">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600 font-bold text-xl">3</div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Download Updated Image</h3>
-                    <p class="text-gray-600">Click "Process Image" to update the GPS metadata. Your modified image with new location data will download automatically to your device.</p>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#tool" class="btn-primary text-white font-medium py-3 px-8 rounded-xl inline-block page-link" data-page="tool">Start Editing Geotags Now</a>
-            </div>
-        </div>
-    </section>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Auto Detect GPS Data</h3>
+                    <p class="text-gray-600 mb-6">
+                        Automatically detects existing GPS metadata in your photos for instant editing. Works with EXIF,
+                        XMP, and IPTC standards.
+                    </p>
 
-    <!-- Guides Section -->
-    <section id="guides" class="page-section py-16">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="section-title">Geotag Editing Guides & Tutorials</h2>
-                <p class="section-subtitle">Learn how to effectively manage location data in your photos with our comprehensive guides from GeotagEditor.com.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="feature-card glass-card p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Why Edit GPS Data in Photos?</h3>
-                    <p class="text-gray-600 mb-4">Learn when and why you should modify location metadata in your images for privacy, organization, or accuracy purposes.</p>
-                    <a href="#how-it-works" class="text-indigo-600 hover:underline font-medium page-link" data-page="how-it-works">Read Guide →</a>
-                </div>
-                
-                <div class="feature-card glass-card p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Privacy Protection Guide</h3>
-                    <p class="text-gray-600 mb-4">How to remove location data from photos before sharing them online to protect your privacy and security using our geotag editor.</p>
-                    <a href="#tool" class="text-indigo-600 hover:underline font-medium page-link" data-page="tool">Try Tool →</a>
-                </div>
-                
-                <div class="feature-card glass-card p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Adding Location to Old Photos</h3>
-                    <p class="text-gray-600 mb-4">Step-by-step guide to adding GPS coordinates to photos that were taken without location data enabled using GeotagEditor.com.</p>
-                    <a href="#tool" class="text-indigo-600 hover:underline font-medium page-link" data-page="tool">Start Editing →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="page-section py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto">
-                <div class="glass-card p-8 rounded-xl">
-                    <h2 class="section-title">Geotag Editor FAQs</h2>
-                    <p class="section-subtitle mb-8">Common questions about our GPS photo editing tool answered by the GeotagEditor.com team.</p>
-                    
-                    <div class="space-y-6">
-                        <div class="border-b border-gray-200 pb-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">How do I add GPS coordinates to old photos?</h3>
-                            <p class="text-gray-600">Our geotag editor tool allows you to add location data to any JPEG image. Simply upload your photo, enter the latitude and longitude coordinates, and process the image. The GPS metadata will be embedded in the image file. It's perfect for adding location data to old vacation photos or archival images.</p>
-                        </div>
-                        
-                        <div class="border-b border-gray-200 pb-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Is my privacy protected when using Geotag Editor?</h3>
-                            <p class="text-gray-600">Yes! Our geotag editor works 100% in your browser. Your images are never uploaded to any server. All processing happens locally on your device, ensuring complete privacy and security. This is why GeotagEditor.com is trusted by privacy-conscious users worldwide.</p>
-                        </div>
-                        
-                        <div class="border-b border-gray-200 pb-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">What image formats are supported?</h3>
-                            <p class="text-gray-600">Currently, we support JPEG/JPG files. These are the most common image formats that support EXIF metadata including GPS location data. Other formats like PNG or WebP don't support EXIF data, which is why we focus on JPEG for geotag editing.</p>
-                        </div>
-                        
-                        <div class="border-b border-gray-200 pb-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Can I remove GPS data from my photos?</h3>
-                            <p class="text-gray-600">Yes! To remove location data, simply upload your image to our geotag editor and clear the coordinate fields before processing. This will create a new image file without GPS metadata, perfect for sharing photos online while protecting your privacy.</p>
-                        </div>
-                        
-                        <div class="pb-2">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">How accurate are the GPS coordinates I can add?</h3>
-                            <p class="text-gray-600">You can enter coordinates with up to 6 decimal places, which provides accuracy within approximately 10 centimeters. You can also click directly on the map for precise location selection. Our geotag editor gives you professional-level precision for all your location editing needs.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8 pt-6 border-t border-gray-200">
-                        <p class="text-gray-600">Have more questions about geotag editing? <a href="#tool" class="text-indigo-600 hover:underline font-medium page-link" data-page="tool">Try our tool</a> or explore our <a href="#guides" class="text-indigo-600 hover:underline font-medium page-link" data-page="guides">guides section</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="page-section py-16">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto">
-                <div class="glass-card p-8 rounded-xl">
-                    <h2 class="section-title">About Geotag Editor</h2>
-                    <div class="prose max-w-none">
-                        <p class="text-gray-600 mb-4"><strong>Geotag Editor</strong> by <strong>GeotagEditor.com</strong> is a free online tool designed for photographers, travelers, and anyone who needs to manage location data in their photos. Whether you want to add missing GPS coordinates, correct inaccurate location data, or protect your privacy by removing location information, our geotag editor makes it simple and secure.</p>
-                        
-                        <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Privacy-First Design</h3>
-                        <p class="text-gray-600 mb-4">We believe your photos should remain private. That's why our geotag editor works entirely in your browser - your images are never uploaded to any server. All processing happens locally on your device, ensuring complete confidentiality of your personal photos and location data. This privacy-focused approach is what makes <strong>GeotagEditor.com</strong> different from other online tools.</p>
-                        
-                        <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Who Is Geotag Editor For?</h3>
-                        <ul class="list-disc pl-5 text-gray-600 mb-4 space-y-2">
-                            <li><strong>Photographers</strong> who want to add location data to their portfolio images</li>
-                            <li><strong>Travel bloggers</strong> needing to correct or add GPS coordinates to travel photos</li>
-                            <li><strong>Privacy-conscious users</strong> who want to remove location data before sharing photos online</li>
-                            <li><strong>Real estate professionals</strong> adding precise location data to property photos</li>
-                            <li><strong>Anyone</strong> with old photos that need location information added</li>
+                    <div class="pt-4 border-t border-gray-100">
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                EXIF GPS detection
+                            </li>
+                            <li class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Batch processing
+                            </li>
                         </ul>
-                        
-                        <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Our Mission</h3>
-                        <p class="text-gray-600">Our mission at <strong>GeotagEditor.com</strong> is to provide a simple, secure, and effective solution for managing GPS metadata in digital images without compromising your privacy. We believe everyone should have access to powerful geotag editing tools without sacrificing security or paying subscription fees.</p>
-                        
-                        <div class="mt-8 p-4 bg-indigo-50 rounded-lg border border-indigo-100">
-                            <p class="text-indigo-800 font-medium">Try our <a href="#tool" class="text-indigo-600 hover:underline page-link" data-page="tool">geotag editor tool</a> today and experience the easiest way to manage location data in your photos!</p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div
+                    class="group feature-card bg-white rounded-2xl p-8 border border-gray-100 hover-lift transition-all duration-300 hover:border-purple-200 hover:shadow-xl">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                </path>
+                            </svg>
                         </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Add or Edit Geotags</h3>
+                    <p class="text-gray-600 mb-6">
+                        Easily add new GPS coordinates or replace existing location data. Support for decimal degrees,
+                        DMS, and map selection.
+                    </p>
+
+                    <div class="pt-4 border-t border-gray-100">
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Multiple coordinate formats
+                            </li>
+                            <li class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Map integration
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div
+                    class="group feature-card bg-white rounded-2xl p-8 border border-gray-100 hover-lift transition-all duration-300 hover:border-green-200 hover:shadow-xl">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 rounded-xl bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center">
+                            <i class="fas fa-lock text-white text-xs"></i>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">100% Private & Secure</h3>
+                    <p class="text-gray-600 mb-6">
+                        All geotag editing happens locally on your device - no uploads to external servers. Your photos
+                        stay completely private.
+                    </p>
+
+                    <div class="pt-4 border-t border-gray-100">
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                No data collection
+                            </li>
+                            <li class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Offline capable
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div
+                    class="group feature-card bg-white rounded-2xl p-8 border border-gray-100 hover-lift transition-all duration-300 hover:border-blue-200 hover:shadow-xl">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Instant Download</h3>
+                    <p class="text-gray-600 mb-6">
+                        Get your updated image immediately after processing with new GPS data embedded. No watermarks,
+                        no delays.
+                    </p>
+
+                    <div class="pt-4 border-t border-gray-100">
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Original quality preserved
+                            </li>
+                            <li class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                No compression
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Privacy Policy Section -->
-    <section id="privacy" class="page-section py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto">
-                <div class="glass-card p-8 rounded-xl">
-                    <h2 class="section-title">Privacy Policy - GeotagEditor.com</h2>
-                    <div class="prose max-w-none">
-                        <p class="text-gray-600 mb-4">At <strong>Geotag Editor</strong> (GeotagEditor.com), we take your privacy seriously. This policy explains how we handle your data when you use our geotag editing service.</p>
-                        
-                        <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">No Data Collection</h3>
-                        <p class="text-gray-600 mb-4">Our geotag editor tool works entirely in your browser. We do not collect, store, or transmit any of your images or personal data. All processing happens locally on your device, and your images never leave your computer. This ensures complete privacy and security for your photos and location data.</p>
-                        
-                        <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Third-Party Services</h3>
-                        <p class="text-gray-600 mb-4">We use Google AdSense to display advertisements on our website. These third-party ad servers may use cookies and similar technologies to provide personalized ads. You can review Google's Privacy Policy for more information about how they handle data.</p>
-                        
-                        <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Cookies</h3>
-                        <p class="text-gray-600 mb-4">Our website may use cookies to improve user experience and for analytics purposes. You can disable cookies in your browser settings if you prefer not to use them.</p>
-                        
-                        <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Contact Us</h3>
-                        <p class="text-gray-600">If you have any questions about this Privacy Policy or our geotag editing tool, please don't hesitate to explore our <a href="#faq" class="text-indigo-600 hover:underline page-link" data-page="faq">FAQ section</a> or use the information provided on our website.</p>
-                        
-                        <div class="mt-8 p-4 bg-gray-50 rounded-lg">
-                            <p class="text-gray-700 text-sm"><strong>Last Updated:</strong> This privacy policy was last updated on December 1, 2024 and applies to all users of GeotagEditor.com.</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- CTA -->
+            <div class="text-center">
+                <a href="features.html"
+                    class="group inline-flex items-center px-8 py-4 bg-white text-gray-800 font-semibold rounded-xl border-2 border-gray-200 hover:border-indigo-300 hover-lift transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <i class="fas fa-chart-bar text-indigo-500 mr-3"></i>
+                    View All Features & Comparison
+                    <i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
             </div>
         </div>
     </section>
-
-    <!-- Ad Container -->
-    <!-- <div class="container mx-auto px-4 my-12">
-        <div class="ad-container">
-            Advertisement - Your Ad Here
-        </div>
-    </div> -->
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-2 mb-4">
-                        <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                        </svg>
-                        <div class="flex flex-col">
-                            <span class="text-xl font-bold">Geotag Editor</span>
-                            <span class="text-sm text-gray-400">GeotagEditor.com</span>
+    <footer class="relative bg-gray-900 text-gray-300 mt-20">
+        <!-- Wave Divider -->
+        <div class="footer-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+                <!-- Brand & Description -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Geotag Editor</h3>
+                            <div class="text-sm text-indigo-300 font-medium">GeotagEditor.com</div>
                         </div>
                     </div>
-                    <p class="text-gray-400">Free online tool to edit GPS data in photos with complete privacy.</p>
+                    <p class="text-gray-400 max-w-md">
+                        Free online tool to add, edit or remove GPS metadata from photos.
+                        100% browser-based processing ensures your photos never leave your device.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-twitter text-gray-300"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-github text-gray-300"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-linkedin-in text-gray-300"></i>
+                        </a>
+                    </div>
                 </div>
-                
-                <div class="flex flex-wrap justify-center space-x-6 mb-6 md:mb-0">
-                    <a href="#about" class="text-gray-300 hover:text-white transition-colors page-link" data-page="about">About</a>
-                    <a href="#privacy" class="text-gray-300 hover:text-white transition-colors page-link" data-page="privacy">Privacy Policy</a>
-                    <a href="#faq" class="text-gray-300 hover:text-white transition-colors page-link" data-page="faq">FAQ</a>
-                    <a href="#guides" class="text-gray-300 hover:text-white transition-colors page-link" data-page="guides">Guides</a>
-                    <a href="#tool" class="text-gray-300 hover:text-white transition-colors page-link" data-page="tool">Editor Tool</a>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="tool.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Editor Tool
+                            </a>
+                        </li>
+                        <li>
+                            <a href="features.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Features
+                            </a>
+                        </li>
+                        <li>
+                            <a href="how-it-works.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                How It Works
+                            </a>
+                        </li>
+                        <li>
+                            <a href="faq.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                FAQ
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                
-                <div class="text-center md:text-right">
-                    <p class="text-gray-400">© 2025 Geotag Editor. All rights reserved.</p>
-                    <p class="text-gray-500 text-sm mt-1">GeotagEditor.com - Free Geotag Editing Online</p>
+
+                <!-- Resources & Legal -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Resources & Legal</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="privacy-policy.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="terms.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Contact Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="sitemap.xml"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Sitemap
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Privacy Badge -->
+                    <div class="mt-8 p-4 bg-gray-800 rounded-lg border border-gray-700">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-green-900/30 flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-green-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-white font-medium">100% Secure</div>
+                                <div class="text-xs text-gray-400">All processing happens in your browser</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-500 text-sm">
-                <p>This geotag editor works 100% in your browser. Your images are never uploaded to any server.</p>
-                <p class="mt-2">For questions about GPS metadata editing, check our <a href="#faq" class="text-indigo-300 hover:text-white page-link" data-page="faq">FAQ section</a> or try our <a href="#tool" class="text-indigo-300 hover:text-white page-link" data-page="tool">geotag editor tool</a>.</p>
+
+            <!-- Copyright -->
+            <div class="mt-12 pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-500 text-sm">
+                        © 2025 <span class="text-white font-medium">GeotagEditor.com</span> • All Rights Reserved
+                    </div>
+                    <div class="mt-4 md:mt-0 text-gray-500 text-sm">
+                        Made with <i class="fas fa-heart text-red-400 mx-1"></i> for photographers worldwide
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
-        // DOM Elements
-        const fileInput = document.getElementById('fileInput');
-        const dropZone = document.getElementById('dropZone');
-        const previewImage = document.getElementById('previewImage');
-        const latInput = document.getElementById('lat');
-        const lonInput = document.getElementById('lon');
-        const processBtn = document.getElementById('processBtn');
-        const status = document.getElementById('status');
+        // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         const mobileMenu = document.getElementById('mobileMenu');
-        const pageLinks = document.querySelectorAll('.page-link');
-        const pageSections = document.querySelectorAll('.page-section');
-        const useCurrentLocationBtn = document.getElementById('useCurrentLocation');
-        const clearCoordinatesBtn = document.getElementById('clearCoordinates');
-        const locateMeBtn = document.getElementById('locateMe');
-        const changeFileBtn = document.getElementById('change-file');
-        const fileName = document.getElementById('file-name');
-        const fileSize = document.getElementById('file-size');
-        const currentLat = document.getElementById('current-lat');
-        const currentLon = document.getElementById('current-lon');
-        const uploadSection = document.getElementById('upload-section');
-        const fileInfoSection = document.getElementById('file-info-section');
-        const coordinatesSection = document.getElementById('coordinates-section');
-        const step1 = document.getElementById('step-1');
-        const step2 = document.getElementById('step-2');
-        const step3 = document.getElementById('step-3');
-        const notification = document.getElementById('notification');
-        
-        // Filename modal elements
-        const filenameModal = document.getElementById('filenameModal');
-        const filenameInput = document.getElementById('filenameInput');
-        const suggestedFilename = document.getElementById('suggestedFilename');
-        const modalClose = document.getElementById('modalClose');
-        const modalCancel = document.getElementById('modalCancel');
-        const modalConfirm = document.getElementById('modalConfirm');
-        
-        // Map variables
-        let map;
-        let marker;
-        let currentLocationMarker;
-        let currentFile = null;
-        let processedImageData = null;
-        
-        // Page titles for SEO
-        const pageTitles = {
-            'home': 'Geotag Editor - Free Online GPS Photo Editing Tool | GeotagEditor.com',
-            'tool': 'Geotag Editor Tool - Edit GPS Data in Photos Online | GeotagEditor.com',
-            'features': 'Features - Geotag Editing Tool by GeotagEditor.com',
-            'how-it-works': 'How to Edit GPS Data with Geotag Editor | GeotagEditor.com',
-            'guides': 'Geotag Editing Guides & Tutorials | GeotagEditor.com',
-            'faq': 'Geotag Editor FAQs - Common Questions Answered | GeotagEditor.com',
-            'about': 'About Geotag Editor - Our Mission & Privacy Focus | GeotagEditor.com',
-            'privacy': 'Privacy Policy - Geotag Editor by GeotagEditor.com'
-        };
 
-        // Initialize page navigation
-        function initPageNavigation() {
-            // Show home page by default
-            showPage('home');
-            
-            // Check URL hash on page load
-            if (window.location.hash) {
-                const pageId = window.location.hash.substring(1);
-                if (pageId && document.getElementById(pageId)) {
-                    showPage(pageId);
-                }
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // outside click se conflict na ho
+
+            mobileMenu.classList.toggle('scale-y-0');
+            mobileMenu.classList.toggle('opacity-0');
+            mobileMenu.classList.toggle('scale-y-100');
+            mobileMenu.classList.toggle('opacity-100');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.add('scale-y-0', 'opacity-0');
+                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
             }
-            
-            // Add event listeners to page links
-            pageLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const page = this.getAttribute('data-page');
-                    showPage(page);
-                    
-                    // Close mobile menu if open
-                    mobileMenu.classList.remove('active');
-                    
-                    // If showing tool page, initialize map
-                    if (page === 'tool') {
-                        setTimeout(initMap, 100);
-                    }
-                });
-            });
-        }
-        
-        // Show specific page and hide others
-        function showPage(pageId) {
-            pageSections.forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-            
-            // Update active link styling
-            pageLinks.forEach(link => {
-                link.classList.remove('current-page');
-                if (link.getAttribute('data-page') === pageId) {
-                    link.classList.add('current-page');
-                }
-            });
-            
-            // Update browser URL and document title
-            if (history.pushState) {
-                history.pushState(null, null, `#${pageId}`);
-            }
-            
-            // Update document title for SEO
-            document.title = pageTitles[pageId] || 'Geotag Editor | GeotagEditor.com';
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-        
-        // Show notification
-        function showNotification(message, type) {
-            const notificationIcon = notification.querySelector('.notification-icon');
-            const notificationMessage = notification.querySelector('.notification-message');
-            
-            // Set message and type
-            notificationMessage.textContent = message;
-            notification.className = `notification ${type}`;
-            
+        });
+
+
+        // Notification System
+        const notification = document.getElementById('notification');
+        const notificationClose = document.getElementById('notification-close');
+
+        function showNotification(message, type = 'success') {
+            const icon = notification.querySelector('.notification-icon');
+            const msg = notification.querySelector('.notification-message');
+
             // Set icon based on type
-            let iconSvg = '';
-            switch(type) {
-                case 'success':
-                    iconSvg = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
-                    break;
-                case 'error':
-                    iconSvg = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
-                    break;
-                case 'warning':
-                    iconSvg = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"></path></svg>';
-                    break;
-                default:
-                    iconSvg = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+            if (type === 'success') {
+                icon.innerHTML = '<i class="fas fa-check text-green-600 text-xs"></i>';
+                icon.className = 'notification-icon w-6 h-6 rounded-full bg-green-100 flex items-center justify-center';
+            } else if (type === 'error') {
+                icon.innerHTML = '<i class="fas fa-exclamation text-red-600 text-xs"></i>';
+                icon.className = 'notification-icon w-6 h-6 rounded-full bg-red-100 flex items-center justify-center';
+            } else if (type === 'info') {
+                icon.innerHTML = '<i class="fas fa-info text-blue-600 text-xs"></i>';
+                icon.className = 'notification-icon w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center';
             }
-            
-            notificationIcon.innerHTML = iconSvg;
-            
-            // Show notification
-            notification.classList.add('show');
-            
+
+            msg.textContent = message;
+            notification.classList.remove('translate-x-full');
+
             // Auto hide after 5 seconds
             setTimeout(() => {
-                notification.classList.remove('show');
+                hideNotification();
             }, 5000);
         }
-        
-        // Initialize Map
-        function initMap() {
-            if (map) {
-                map.remove();
-            }
-            
-            // Create map with default view
-            map = L.map('map').setView([34.0522, -118.2437], 10);
-            
-            // Add tile layer
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-            
-            // Add click event to map
-            map.on('click', function(e) {
-                updateCoordinates(e.latlng.lat, e.latlng.lng);
-                updateMarker(e.latlng);
+
+        function hideNotification() {
+            notification.classList.add('translate-x-full');
+        }
+
+        if (notificationClose) {
+            notificationClose.addEventListener('click', hideNotification);
+        }
+
+        // Set active nav link based on current page
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                    link.classList.add('text-indigo-600');
+                } else {
+                    link.classList.remove('active');
+                    link.classList.remove('text-indigo-600');
+                }
             });
-            
-            // Initialize marker
-            marker = L.marker([34.0522, -118.2437], {
-                icon: L.divIcon({
-                    className: 'location-marker',
-                    iconSize: [20, 20]
-                })
-            }).addTo(map);
-            
-            // Add event listeners for coordinate inputs
-            latInput.addEventListener('input', updateMapFromInputs);
-            lonInput.addEventListener('input', updateMapFromInputs);
-        }
-        
-        // Update coordinates in inputs and map
-        function updateCoordinates(lat, lng) {
-            latInput.value = lat.toFixed(6);
-            lonInput.value = lng.toFixed(6);
-            updateMarker([lat, lng]);
-            
-            // Enable process button if we have a file
-            if (currentFile) {
-                processBtn.disabled = false;
-            }
-        }
-        
-        // Update marker position
-        function updateMarker(latlng) {
-            if (marker) {
-                marker.setLatLng(latlng);
-                map.setView(latlng, 13);
-            }
-        }
-        
-        // Update map from coordinate inputs
-        function updateMapFromInputs() {
-            const lat = parseFloat(latInput.value);
-            const lng = parseFloat(lonInput.value);
-            
-            if (!isNaN(lat) && !isNaN(lng)) {
-                updateMarker([lat, lng]);
-                
-                // Enable process button if we have a file
-                if (currentFile) {
-                    processBtn.disabled = false;
-                }
-            }
-        }
-        
-        // Get current location
-        function getCurrentLocation() {
-            if (!navigator.geolocation) {
-                showNotification('Geolocation is not supported by this browser', 'error');
-                return;
-            }
-            
-            showNotification('Getting your location...', 'info');
-            
-            navigator.geolocation.getCurrentPosition(
-                function(position) {
-                    const lat = position.coords.latitude;
-                    const lng = position.coords.longitude;
-                    
-                    updateCoordinates(lat, lng);
-                    
-                    showNotification('Location found! Coordinates updated.', 'success');
-                    
-                    // Add current location marker
-                    if (currentLocationMarker) {
-                        map.removeLayer(currentLocationMarker);
-                    }
-                    
-                    currentLocationMarker = L.marker([lat, lng], {
-                        icon: L.divIcon({
-                            className: 'current-location-marker',
-                            html: '<div style="background-color: #10b981; width: 16px; height: 16px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>',
-                            iconSize: [16, 16]
-                        })
-                    }).addTo(map)
-                    .bindPopup('Your current location')
-                    .openPopup();
-                },
-                function(error) {
-                    let errorMessage = 'Unable to retrieve your location';
-                    
-                    switch(error.code) {
-                        case error.PERMISSION_DENIED:
-                            errorMessage = 'Location access denied by user';
-                            break;
-                        case error.POSITION_UNAVAILABLE:
-                            errorMessage = 'Location information unavailable';
-                            break;
-                        case error.TIMEOUT:
-                            errorMessage = 'Location request timed out';
-                            break;
-                    }
-                    
-                    showNotification(errorMessage, 'error');
-                }
-            );
-        }
-        
-        // Clear coordinates
-        function clearCoordinates() {
-            latInput.value = '';
-            lonInput.value = '';
-            
-            if (marker) {
-                map.removeLayer(marker);
-                marker = L.marker([34.0522, -118.2437], {
-                    icon: L.divIcon({
-                        className: 'location-marker',
-                        iconSize: [20, 20]
-                    })
-                }).addTo(map);
-                map.setView([34.0522, -118.2437], 10);
-            }
-            
-            if (currentLocationMarker) {
-                map.removeLayer(currentLocationMarker);
-                currentLocationMarker = null;
-            }
-            
-            processBtn.disabled = true;
-            status.textContent = 'Coordinates cleared';
-            status.className = 'status-message info';
-        }
-        
-        // Mobile Menu Toggle
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
         });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-            }
-        });
-        
-        // Event Listeners for File Upload
-        dropZone.addEventListener('click', () => fileInput.click());
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('active');
-        });
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('active');
-        });
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('active');
-            if (e.dataTransfer.files.length) {
-                fileInput.files = e.dataTransfer.files;
-                handleFileSelect();
-            }
-        });
-        fileInput.addEventListener('change', handleFileSelect);
-        processBtn.addEventListener('click', processImage);
-        changeFileBtn.addEventListener('click', () => {
-            fileInput.value = '';
-            resetTool();
-        });
-        
-        // Map-related event listeners
-        useCurrentLocationBtn.addEventListener('click', getCurrentLocation);
-        clearCoordinatesBtn.addEventListener('click', clearCoordinates);
-        locateMeBtn.addEventListener('click', getCurrentLocation);
-        
-        // Filename modal event listeners
-        modalClose.addEventListener('click', () => {
-            filenameModal.classList.remove('active');
-        });
-        
-        modalCancel.addEventListener('click', () => {
-            filenameModal.classList.remove('active');
-        });
-        
-        modalConfirm.addEventListener('click', () => {
-            const filename = filenameInput.value.trim();
-            if (!filename) {
-                showNotification('Please enter a filename', 'warning');
-                return;
-            }
-            
-            // Ensure the filename has .jpg extension
-            let finalFilename = filename;
-            if (!finalFilename.toLowerCase().endsWith('.jpg') && !finalFilename.toLowerCase().endsWith('.jpeg')) {
-                finalFilename += '.jpg';
-            }
-            
-            // Download the image with the custom filename
-            downloadImage(finalFilename);
-            
-            // Close the modal
-            filenameModal.classList.remove('active');
-            
-            // Reset after a delay
-            setTimeout(() => {
-                resetTool();
-            }, 2000);
-        });
-        
-        // Use suggested filename when clicked
-        suggestedFilename.addEventListener('click', () => {
-            filenameInput.value = suggestedFilename.textContent;
-        });
-        
-        // Reset tool to initial state
-        function resetTool() {
-            currentFile = null;
-            processedImageData = null;
-            uploadSection.classList.remove('hidden');
-            fileInfoSection.classList.add('hidden');
-            coordinatesSection.classList.add('hidden');
-            step1.classList.add('active');
-            step2.classList.remove('active');
-            step3.classList.remove('active');
-            processBtn.disabled = true;
-            status.textContent = 'Upload a JPEG image to begin editing GPS data';
-            status.className = 'status-message info';
-            clearCoordinates();
-        }
-        
-        // File selection handler
-        function handleFileSelect() {
-            const file = fileInput.files[0];
-            if (!file) return;
-            
-            // Check if file is JPEG
-            if (!file.type.match('image/jpeg')) {
-                showNotification('Please upload a JPEG image', 'error');
-                return;
-            }
-            
-            currentFile = file;
-            
-            // Update file info
-            fileName.textContent = file.name;
-            fileSize.textContent = formatFileSize(file.size);
-            
-            // Show preview
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                previewImage.src = e.target.result;
-                previewImage.classList.add('loaded');
-                
-                // Update UI to show file info and coordinates section
-                uploadSection.classList.add('hidden');
-                fileInfoSection.classList.remove('hidden');
-                coordinatesSection.classList.remove('hidden');
-                
-                // Update step indicator
-                step1.classList.remove('active');
-                step2.classList.add('active');
-                
-                // Initialize map if not already done
-                if (!map) {
-                    initMap();
-                }
-            };
-            reader.readAsDataURL(file);
-            
-            // Check for existing GPS data
-            checkForGPSData(file);
-        }
-        
-        // Format file size
-        function formatFileSize(bytes) {
-            if (bytes < 1024) return bytes + ' bytes';
-            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-            else return (bytes / 1048576).toFixed(1) + ' MB';
-        }
-        
-        // Check for existing GPS data in the image
-        function checkForGPSData(file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                try {
-                    const exifObj = piexif.load(e.target.result);
-                    const gpsData = exifObj.GPS;
-                    
-                    if (gpsData && Object.keys(gpsData).length > 0) {
-                        status.textContent = 'GPS data found in image';
-                        status.className = 'status-message success';
-                        
-                        // Try to extract and display existing coordinates
-                        try {
-                            const lat = piexif.GPSHelper.dmsRationalToDeg(gpsData[piexif.GPSIFD.GPSLatitude], gpsData[piexif.GPSIFD.GPSLatitudeRef]);
-                            const lon = piexif.GPSHelper.dmsRationalToDeg(gpsData[piexif.GPSIFD.GPSLongitude], gpsData[piexif.GPSIFD.GPSLongitudeRef]);
-                            
-                            if (!isNaN(lat) && !isNaN(lon)) {
-                                currentLat.textContent = lat.toFixed(6);
-                                currentLat.className = 'coordinate-value';
-                                currentLon.textContent = lon.toFixed(6);
-                                currentLon.className = 'coordinate-value';
-                                
-                                // Update inputs and map with existing coordinates
-                                updateCoordinates(lat, lon);
-                            } else {
-                                currentLat.textContent = 'Invalid data';
-                                currentLat.className = 'coordinate-value empty';
-                                currentLon.textContent = 'Invalid data';
-                                currentLon.className = 'coordinate-value empty';
-                            }
-                        } catch (err) {
-                            currentLat.textContent = 'Could not extract';
-                            currentLat.className = 'coordinate-value empty';
-                            currentLon.textContent = 'Could not extract';
-                            currentLon.className = 'coordinate-value empty';
-                        }
-                    } else {
-                        status.textContent = 'No GPS data found - ready to add new coordinates';
-                        status.className = 'status-message info';
-                        currentLat.textContent = 'No data';
-                        currentLat.className = 'coordinate-value empty';
-                        currentLon.textContent = 'No data';
-                        currentLon.className = 'coordinate-value empty';
-                    }
-                } catch (err) {
-                    status.textContent = 'No EXIF data found - ready to add GPS coordinates';
-                    status.className = 'status-message info';
-                    currentLat.textContent = 'No data';
-                    currentLat.className = 'coordinate-value empty';
-                    currentLon.textContent = 'No data';
-                    currentLon.className = 'coordinate-value empty';
-                }
-            };
-            reader.readAsDataURL(file);
-        }
-        
-        // Process the image and add GPS data
-        function processImage() {
-            const file = currentFile;
-            const latVal = parseFloat(latInput.value);
-            const lonVal = parseFloat(lonInput.value);
-            
-            if (!file) {
-                showNotification('Please upload an image first', 'warning');
-                return;
-            }
-            
-            if (isNaN(latVal) || isNaN(lonVal)) {
-                showNotification('Please enter valid latitude and longitude values', 'warning');
-                return;
-            }
-            
-            // Update step indicator
-            step2.classList.remove('active');
-            step3.classList.add('active');
-            
-            status.textContent = 'Processing image...';
-            status.className = 'status-message info';
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const base64 = e.target.result;
-                    const latRef = latVal >= 0 ? "N" : "S";
-                    const lonRef = lonVal >= 0 ? "E" : "W";
-                    
-                    // Create GPS data object
-                    const gpsData = {};
-                    gpsData[piexif.GPSIFD.GPSLatitudeRef] = latRef;
-                    gpsData[piexif.GPSIFD.GPSLatitude] = piexif.GPSHelper.degToDmsRational(latVal);
-                    gpsData[piexif.GPSIFD.GPSLongitudeRef] = lonRef;
-                    gpsData[piexif.GPSIFD.GPSLongitude] = piexif.GPSHelper.degToDmsRational(lonVal);
-                    
-                    // Create EXIF object
-                    const exifObj = { "0th": {}, "Exif": {}, "GPS": gpsData, "1st": {} };
-                    const exifBytes = piexif.dump(exifObj);
-                    processedImageData = piexif.insert(exifBytes, base64);
-                    
-                    status.textContent = 'Image processed successfully! Ready to download.';
-                    status.className = 'status-message success';
-                    
-                    showNotification('Image processed successfully!', 'success');
-                    
-                    // Generate suggested filename
-                    const originalName = file.name;
-                    const nameWithoutExt = originalName.replace(/\.[^/.]+$/, "");
-                    const suggestedName = `geotag_edited_${nameWithoutExt}.jpg`;
-                    suggestedFilename.textContent = suggestedName;
-                    filenameInput.value = suggestedName;
-                    
-                    // Show filename modal
-                    filenameModal.classList.add('active');
-                    
-                } catch (err) {
-                    console.error(err);
-                    status.textContent = 'Error: ' + err.message;
-                    status.className = 'status-message error';
-                    
-                    showNotification('Error processing image: ' + err.message, 'error');
-                    
-                    // Reset step indicator
-                    step3.classList.remove('active');
-                    step2.classList.add('active');
-                }
-            };
-            reader.readAsDataURL(file);
-        }
-        
-        // Download the processed image with custom filename
-        function downloadImage(filename) {
-            if (!processedImageData) {
-                showNotification('No processed image data available', 'error');
-                return;
-            }
-            
-            // Create download link
-            const link = document.createElement("a");
-            link.href = processedImageData;
-            link.download = filename;
-            link.click();
-            
-            showNotification('Image downloaded successfully!', 'success');
-        }
-        
-        // Initialize lazy loading for images
-        function initLazyLoading() {
-            const images = document.querySelectorAll("img[loading='lazy']");
-            
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const image = entry.target;
-                        image.classList.add("loaded");
-                        imageObserver.unobserve(image);
-                    }
-                });
-            });
-            
-            images.forEach(img => imageObserver.observe(img));
-        }
-        
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            initPageNavigation();
-            initLazyLoading();
-            
-            // Initialize map if on tool page
-            if (window.location.hash === '#tool' || window.location.hash === '') {
-                setTimeout(initMap, 500);
-            }
-        });
+
+
     </script>
+
 </body>
+
 </html>

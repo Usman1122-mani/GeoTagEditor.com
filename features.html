@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Features - Geotag Editor by GeotagEditor.com | Complete GPS Photo Editing Tool</title>
+    <meta name="description"
+        content="Discover all features of Geotag Editor by GeotagEditor.com. Auto-detect GPS, edit geotags, 100% private processing, instant download, and more.">
+    <meta name="keywords"
+        content="geotag editor features, GPS photo editor features, geotag editing tools, photo metadata editor features, GPS coordinate editor">
+  <!-- FAVICON -->
+     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-geotageditor.com.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-geotageditor.com.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-geotageditor.com.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-geotageditor.com.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-geotageditor.com.png">
+<link rel="shortcut icon" href="assets/images/favicon-geotageditor.com.png">
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-dark: #4338ca;
+            --primary-light: #e0e7ff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .shadow-soft {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .shadow-deep {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .footer-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 40px;
+        }
+
+        .footer-wave .shape-fill {
+            fill: #ffffff;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+
+        .comparison-table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(to bottom right, #f8fafc, #f1f5f9);
+        }
+
+        .comparison-table td {
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .comparison-table tr:hover td {
+            background-color: #f9fafb;
+        }
+
+        .feature-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+    </style>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://geotageditor.com/features.html">
+</head>
+
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-soft transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white">
+                        </div>
+                    </div>
+                    <div>
+                        <a href="index.html"
+                            class="text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors">Geotag
+                            Editor</a>
+                        <div class="text-xs text-gray-500 font-medium">by GeotagEditor.com</div>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <a href="index.html"
+                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600 active flex items-center">
+                        <i class="fa-solid fa-house mr-2 text-indigo-500"></i>
+                        Home
+                    </a>
+                    <a href="tool.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-edit mr-2 text-sm"></i>Editor Tool
+                    </a>
+                    <a href="features.html"
+                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600 active">
+                        <i class="fas fa-star mr-2 text-sm"></i>Features
+                    </a>
+                    <a href="how-it-works.html"
+                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-play-circle mr-2 text-sm"></i>How It Works
+                    </a>
+                    <a href="guides.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-book mr-2 text-sm"></i>Guides
+                    </a>
+                    <a href="faq.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-question-circle mr-2 text-sm"></i>FAQ
+                    </a>
+                    <a href="about.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-info-circle mr-2 text-sm"></i>About
+                    </a>
+                    <a href="tool.html"
+                        class="ml-4 px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg hover-lift transition-all shadow-md hover:shadow-lg">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Start Editing
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+               <button id="mobileMenuButton" class="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 hover-lift transition-all">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden bg-white border-t border-gray-100 shadow-lg transform origin-top transition-all duration-300 scale-y-0 opacity-0 absolute w-full z-40">
+
+            <div class="px-4 py-6 space-y-1">
+                <a href="index.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-home mr-3 text-indigo-500"></i>Home
+                </a>
+                <a href="tool.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-edit mr-3 text-indigo-500"></i>Editor Tool
+                </a>
+                <a href="features.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all active bg-indigo-50 text-indigo-700">
+                    <i class="fas fa-star mr-3 text-indigo-500"></i>Features
+                </a>
+                <a href="how-it-works.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-play-circle mr-3 text-indigo-500"></i>How It Works
+                </a>
+                <a href="guides.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-book mr-3 text-indigo-500"></i>Guides
+                </a>
+                <a href="faq.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-question-circle mr-3 text-indigo-500"></i>FAQ
+                </a>
+                <a href="about.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-info-circle mr-3 text-indigo-500"></i>About
+                </a>
+                <a href="privacy-policy.html"
+                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-shield-alt mr-3 text-indigo-500"></i>Privacy Policy
+                </a>
+                <div class="pt-4 mt-4 border-t border-gray-100">
+                    <a href="tool.html"
+                        class="block text-center px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg hover-lift transition-all shadow-md">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Start Editing GPS Data
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Hero -->
+    <section class="relative py-16 lg:py-24 overflow-hidden bg-gradient-to-br from-indigo-50 to-purple-50">
+        <div class="absolute inset-0">
+            <div
+                class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full filter blur-3xl opacity-50 translate-x-1/3 -translate-y-1/3">
+            </div>
+            <div
+                class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-blue-50 to-purple-50 rounded-full filter blur-3xl opacity-30 -translate-x-1/3 translate-y-1/3">
+            </div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-white border border-indigo-100 mb-6">
+                    <i class="fas fa-star text-indigo-500 mr-2"></i>
+                    <span class="text-sm font-medium text-indigo-700">Complete Feature Set</span>
+                </div>
+
+                <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6">
+                    Everything You Need to
+                    <span class="gradient-text block">Edit GPS Data</span>
+                </h1>
+
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+                    Discover all the powerful features of our geotag editing tool designed for photographers, travelers,
+                    and privacy-conscious users.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="tool.html"
+                        class="px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover-lift transition-all shadow-lg hover:shadow-xl inline-flex items-center justify-center">
+                        <i class="fas fa-play mr-3"></i>
+                        Try All Features Now
+                    </a>
+                    <a href="#comparison"
+                        class="px-8 py-4 bg-white text-gray-800 font-semibold rounded-xl border-2 border-gray-200 hover:border-indigo-300 hover-lift transition-all shadow-md hover:shadow-lg inline-flex items-center justify-center">
+                        <i class="fas fa-chart-bar mr-3 text-indigo-500"></i>
+                        View Comparison
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Features -->
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Core Features</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Powerful tools for managing GPS metadata in your photos with complete privacy and ease.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div
+                    class="feature-card bg-white rounded-2xl p-8 border border-gray-100 hover:border-indigo-200 shadow-sm">
+                    <div
+                        class="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-search-location text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Auto GPS Detection</h3>
+                    <p class="text-gray-600 mb-6">Automatically scans your JPEG images for existing GPS metadata and
+                        displays current coordinates instantly.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-green-500 mr-3 text-lg"></i>
+                            <span>Detects latitude and longitude</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-green-500 mr-3 text-lg"></i>
+                            <span>Shows coordinate format</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-green-500 mr-3 text-lg"></i>
+                            <span>Identifies empty GPS data</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Feature 2 -->
+                <div
+                    class="feature-card bg-white rounded-2xl p-8 border border-gray-100 hover:border-purple-200 shadow-sm">
+                    <div
+                        class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-edit text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Flexible Geotag Editing</h3>
+                    <p class="text-gray-600 mb-6">Add, edit, or remove GPS coordinates with multiple input methods for
+                        maximum flexibility.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-keyboard text-blue-500 mr-3 text-lg"></i>
+                            <span>Manual coordinate input</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-map-marked-alt text-blue-500 mr-3 text-lg"></i>
+                            <span>Interactive map selection</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-location-arrow text-blue-500 mr-3 text-lg"></i>
+                            <span>Current location detection</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Feature 3 -->
+                <div
+                    class="feature-card bg-white rounded-2xl p-8 border border-gray-100 hover:border-green-200 shadow-sm">
+                    <div
+                        class="w-16 h-16 rounded-xl bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-lock text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">100% Privacy Guaranteed</h3>
+                    <p class="text-gray-600 mb-6">Your photos never leave your device. All geotag editing happens
+                        locally in your browser.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-shield-alt text-green-500 mr-3 text-lg"></i>
+                            <span>No server uploads</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-database text-green-500 mr-3 text-lg"></i>
+                            <span>No data collection</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-user-secret text-green-500 mr-3 text-lg"></i>
+                            <span>End-to-end security</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Feature 4 -->
+                <div
+                    class="feature-card bg-white rounded-2xl p-8 border border-gray-100 hover:border-blue-200 shadow-sm">
+                    <div
+                        class="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-download text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Instant Processing & Download</h3>
+                    <p class="text-gray-600 mb-6">Get your edited images immediately with embedded GPS metadata, ready
+                        to use.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-bolt text-yellow-500 mr-3 text-lg"></i>
+                            <span>Fast processing</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-file-signature text-yellow-500 mr-3 text-lg"></i>
+                            <span>Custom filename options</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-expand-arrows-alt text-yellow-500 mr-3 text-lg"></i>
+                            <span>Original quality preserved</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Feature 5 -->
+                <div
+                    class="feature-card bg-white rounded-2xl p-8 border border-gray-100 hover:border-yellow-200 shadow-sm">
+                    <div
+                        class="w-16 h-16 rounded-xl bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-globe-americas text-2xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Interactive Map Interface</h3>
+                    <p class="text-gray-600 mb-6">Visual location selection with our integrated OpenStreetMap interface.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-mouse-pointer text-red-500 mr-3 text-lg"></i>
+                            <span>Click to set coordinates</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-search-plus text-red-500 mr-3 text-lg"></i>
+                            <span>Zoom and pan controls</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-map-pin text-red-500 mr-3 text-lg"></i>
+                            <span>Location markers</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Feature 6 -->
+                <div
+                    class="feature-card bg-white rounded-2xl p-8 border border-gray-100 hover:border-red-200 shadow-sm">
+                    <div
+                        class="w-16 h-16 rounded-xl bg-gradient-to-br from-red-100 to-pink-100 flex items-center justify-center mb-6 feature-icon">
+                        <i class="fas fa-bolt text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Lightning Fast Performance</h3>
+                    <p class="text-gray-600 mb-6">Optimized for speed with no lag, even with large image files.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-rocket text-purple-500 mr-3 text-lg"></i>
+                            <span>No waiting for uploads</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-eye text-purple-500 mr-3 text-lg"></i>
+                            <span>Instant preview</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-cogs text-purple-500 mr-3 text-lg"></i>
+                            <span>Quick processing</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison -->
+    <section id="comparison" class="py-16 lg:py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <div
+                    class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 mb-4">
+                    <i class="fas fa-chart-bar text-indigo-500 mr-2"></i>
+                    <span class="text-sm font-medium text-indigo-700">Feature Comparison</span>
+                </div>
+
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Why Choose Our Geotag Editor?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Compare our features with other GPS editing tools and see the difference.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-deep overflow-hidden">
+                <div class="p-8">
+                    <div class="overflow-x-auto rounded-lg border border-gray-200">
+                        <table class="comparison-table w-full">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="text-left py-6 px-8 font-semibold text-gray-900 text-lg">Feature</th>
+                                    <th class="text-center py-6 px-8">
+                                        <div class="flex flex-col items-center">
+                                            <div class="flex items-center mb-2">
+                                                <div
+                                                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mr-3">
+                                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                                </div>
+                                                <span class="font-bold text-gray-900 text-lg">Geotag Editor</span>
+                                            </div>
+                                            <span class="text-sm text-indigo-600 font-medium">GeotagEditor.com</span>
+                                        </div>
+                                    </th>
+                                    <th class="text-center py-6 px-8">
+                                        <div class="flex flex-col items-center">
+                                            <div class="flex items-center mb-2">
+                                                <div
+                                                    class="w-10 h-10 rounded-xl bg-gray-200 flex items-center justify-center mr-3">
+                                                    <i class="fas fa-question text-gray-600"></i>
+                                                </div>
+                                                <span class="font-bold text-gray-900 text-lg">Other Tools</span>
+                                            </div>
+                                            <span class="text-sm text-gray-600 font-medium">Typical Online Tools</span>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-6 px-8 font-medium text-gray-900 border-t">Privacy (No Uploads)</td>
+                                    <td class="text-center py-6 px-8 border-t">
+                                        <div class="flex items-center justify-center">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                                <i class="fas fa-check text-green-600"></i>
+                                            </div>
+                                            <span class="ml-2 font-medium text-green-700">100% Browser-Based</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center py-6 px-8 border-t text-gray-600">
+                                        Usually requires uploads
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-6 px-8 font-medium text-gray-900">Completely Free</td>
+                                    <td class="text-center py-6 px-8">
+                                        <div class="flex items-center justify-center">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                                <i class="fas fa-check text-green-600"></i>
+                                            </div>
+                                            <span class="ml-2 font-medium text-green-700">No Limits, No Fees</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center py-6 px-8 text-gray-600">
+                                        Often limited or paid
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-6 px-8 font-medium text-gray-900">Interactive Map</td>
+                                    <td class="text-center py-6 px-8">
+                                        <div class="flex items-center justify-center">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                                <i class="fas fa-check text-green-600"></i>
+                                            </div>
+                                            <span class="ml-2 font-medium text-green-700">OpenStreetMap Included</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center py-6 px-8 text-gray-600">
+                                        Rarely included
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-6 px-8 font-medium text-gray-900">Auto GPS Detection</td>
+                                    <td class="text-center py-6 px-8">
+                                        <div class="flex items-center justify-center">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                                <i class="fas fa-check text-green-600"></i>
+                                            </div>
+                                            <span class="ml-2 font-medium text-green-700">Instant Detection</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center py-6 px-8 text-gray-600">
+                                        Basic detection only
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-6 px-8 font-medium text-gray-900">No Watermarks</td>
+                                    <td class="text-center py-6 px-8">
+                                        <div class="flex items-center justify-center">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                                <i class="fas fa-check text-green-600"></i>
+                                            </div>
+                                            <span class="ml-2 font-medium text-green-700">Clean Images</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center py-6 px-8 text-gray-600">
+                                        Often adds watermarks
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-6 px-8 font-medium text-gray-900">Batch Processing</td>
+                                    <td class="text-center py-6 px-8">
+                                        <div class="flex items-center justify-center">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                                <i class="fas fa-check text-green-600"></i>
+                                            </div>
+                                            <span class="ml-2 font-medium text-green-700">Coming Soon</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center py-6 px-8 text-gray-600">
+                                        Premium feature
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div
+                        class="mt-12 p-6 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl border border-indigo-100">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Ready to experience the difference?
+                                </h3>
+                                <p class="text-gray-600">Try our geotag editor and see why it's the best choice for
+                                    photographers.</p>
+                            </div>
+                            <a href="tool.html"
+                                class="px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-lg hover-lift transition-all shadow-md hover:shadow-lg whitespace-nowrap">
+                                <i class="fas fa-play mr-2"></i>
+                                Try It Free Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div
+                class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-8 lg:p-12 text-center text-white overflow-hidden relative">
+                <!-- Background elements -->
+                <div class="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full -translate-x-16 -translate-y-16">
+                </div>
+                <div class="absolute bottom-0 right-0 w-48 h-48 bg-white/10 rounded-full translate-x-24 translate-y-24">
+                </div>
+
+                <div class="relative z-10">
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-6">Experience All Features Firsthand</h2>
+                    <p class="text-lg text-indigo-100 mb-8 max-w-2xl mx-auto">
+                        Try our geotag editor tool today and discover why it's the best choice for editing GPS data in
+                        your photos.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="tool.html"
+                            class="px-8 py-4 bg-white text-indigo-700 font-semibold rounded-xl hover:bg-gray-100 hover-lift transition-all shadow-lg hover:shadow-xl inline-flex items-center justify-center">
+                            <i class="fas fa-play mr-3"></i>
+                            Try Geotag Editor Now
+                        </a>
+                        <a href="how-it-works.html"
+                            class="px-8 py-4 bg-white/20 text-white font-semibold rounded-xl border-2 border-white/30 hover:bg-white/30 hover-lift transition-all inline-flex items-center justify-center">
+                            <i class="fas fa-book-open mr-3"></i>
+                            Learn How It Works
+                        </a>
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-check-circle text-green-300 mr-2"></i>
+                            <span class="text-sm">All features included</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-user-plus text-green-300 mr-2"></i>
+                            <span class="text-sm">No registration required</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-gift text-green-300 mr-2"></i>
+                            <span class="text-sm">100% free forever</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative bg-gray-900 text-gray-300">
+        <div class="footer-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+                <!-- Brand & Description -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Geotag Editor</h3>
+                            <div class="text-sm text-indigo-300 font-medium">GeotagEditor.com</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        Free online tool to add, edit or remove GPS metadata from photos.
+                        100% browser-based processing ensures your photos never leave your device.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-twitter text-gray-300"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-github text-gray-300"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-linkedin-in text-gray-300"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="tool.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Editor Tool
+                            </a>
+                        </li>
+                        <li>
+                            <a href="features.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group active text-indigo-300">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i>
+                                Features
+                            </a>
+                        </li>
+                        <li>
+                            <a href="how-it-works.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                How It Works
+                            </a>
+                        </li>
+                        <li>
+                            <a href="faq.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                FAQ
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Resources & Legal -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Resources & Legal</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="privacy-policy.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="terms.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Contact Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="sitemap.xml"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Sitemap
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Privacy Badge -->
+                    <div class="mt-8 p-4 bg-gray-800 rounded-lg border border-gray-700">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-green-900/30 flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-green-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-white font-medium">100% Secure</div>
+                                <div class="text-xs text-gray-400">All processing happens in your browser</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="mt-12 pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-500 text-sm">
+                        © 2025 <span class="text-white font-medium">GeotagEditor.com</span> • All Rights Reserved
+                    </div>
+                    <div class="mt-4 md:mt-0 text-gray-500 text-sm">
+                        Made with <i class="fas fa-heart text-red-400 mx-1"></i> for photographers worldwide
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // outside click se conflict na ho
+
+            mobileMenu.classList.toggle('scale-y-0');
+            mobileMenu.classList.toggle('opacity-0');
+            mobileMenu.classList.toggle('scale-y-100');
+            mobileMenu.classList.toggle('opacity-100');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.add('scale-y-0', 'opacity-0');
+                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
+            }
+        });
+
+
+        // Set active nav link based on current page
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileLinks = document.querySelectorAll('#mobileMenu a');
+
+            // Update desktop nav
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                    link.classList.add('text-indigo-600');
+                } else {
+                    link.classList.remove('active');
+                    link.classList.remove('text-indigo-600');
+                }
+            });
+
+            // Update mobile nav
+            mobileLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                    link.classList.add('bg-indigo-50', 'text-indigo-700');
+                } else {
+                    link.classList.remove('active');
+                    link.classList.remove('bg-indigo-50', 'text-indigo-700');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Geotag Editor Tool - Edit GPS Data in Photos Online | GeotagEditor.com</title>
+    <meta name="description"
+        content="Free online geotag editor tool. Add, edit, or remove GPS coordinates from JPEG photos directly in your browser. No uploads, completely private.">
+    <meta name="keywords"
+        content="geotag editor tool, GPS photo editor online, edit geotags free, remove location data from photos, add GPS coordinates to images">
+  <!-- FAVICON -->
+     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-geotageditor.com.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-geotageditor.com.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-geotageditor.com.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-geotageditor.com.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-geotageditor.com.png">
+<link rel="shortcut icon" href="assets/images/favicon-geotageditor.com.png">
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/piexifjs"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-dark: #4338ca;
+            --primary-light: #e0e7ff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .shadow-soft {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .shadow-deep {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .footer-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 40px;
+        }
+
+        .footer-wave .shape-fill {
+            fill: #ffffff;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .map-container {
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .leaflet-container {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 1;
+        }
+
+        .step {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: #9ca3af;
+            margin-bottom: 0.75rem;
+            border: 3px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-number {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .step-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #9ca3af;
+        }
+
+        .step.active .step-label {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        .drop-zone {
+            border: 2px dashed #d1d5db;
+            background: linear-gradient(to bottom right, #f8fafc, #f1f5f9);
+            transition: all 0.3s ease;
+        }
+
+        .drop-zone:hover {
+            border-color: #4f46e5;
+            background: linear-gradient(to bottom right, #f0f9ff, #e0e7ff);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.1);
+        }
+
+        .drop-zone.drag-over {
+            border-color: #4f46e5;
+            background: linear-gradient(to bottom right, #e0e7ff, #c7d2fe);
+        }
+
+        .process-btn {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            width: 100%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .process-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        .process-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .status-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        .status-message.info {
+            background: #f0f9ff;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+        }
+
+        .status-message.success {
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .status-message.error {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .notification {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            max-width: 24rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://geotageditor.com/tool.html">
+</head>
+
+<body class="bg-gray-50">
+    <!-- Notification System -->
+    <div id="notification" class="notification">
+        <div class="p-4">
+            <div class="flex items-start">
+                <div class="flex-shrink-0">
+                    <div id="notification-icon"
+                        class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-check text-green-600 text-xs"></i>
+                    </div>
+                </div>
+                <div class="ml-3 flex-1">
+                    <p id="notification-message" class="text-sm font-medium text-gray-900">Notification message</p>
+                </div>
+                <div class="ml-4 flex-shrink-0">
+                    <button id="notification-close" class="inline-flex text-gray-400 hover:text-gray-500">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filename Modal -->
+    <div id="filenameModal" class="modal-overlay">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-gray-900">Save Your Image</h3>
+                <button id="modalClose" class="text-gray-400 hover:text-gray-500">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <p class="text-gray-600 mb-4">Enter a filename for your processed image:</p>
+                <input type="text" id="filenameInput"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Enter filename..." />
+                <div class="mt-2 text-sm text-gray-500">
+                    Suggestion: <span id="suggestedFilename"
+                        class="text-indigo-600 font-medium cursor-pointer hover:text-indigo-800">geotag_edited_image.jpg</span>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <button id="modalCancel"
+                    class="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                    Cancel
+                </button>
+                <button id="modalConfirm"
+                    class="flex-1 px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-lg hover-lift transition-all">
+                    Save Image
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-soft transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white">
+                        </div>
+                    </div>
+                    <div>
+                        <a href="index.html"
+                            class="text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors">Geotag
+                            Editor</a>
+                        <div class="text-xs text-gray-500 font-medium">by GeotagEditor.com</div>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-1">
+
+                    <a href="index.html"
+                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600 active flex items-center">
+                        <i class="fa-solid fa-house mr-2 text-indigo-500"></i>
+                        Home
+                    </a>
+                    <a href="tool.html"
+                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600 active">
+                        <i class="fas fa-edit mr-2 text-sm"></i>Editor Tool
+                    </a>
+                    <a href="features.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-star mr-2 text-sm"></i>Features
+                    </a>
+                    <a href="how-it-works.html"
+                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-play-circle mr-2 text-sm"></i>How It Works
+                    </a>
+                    <a href="guides.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-book mr-2 text-sm"></i>Guides
+                    </a>
+                    <a href="faq.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-question-circle mr-2 text-sm"></i>FAQ
+                    </a>
+                    <a href="about.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-info-circle mr-2 text-sm"></i>About
+                    </a>
+                    <a href="tool.html"
+                        class="ml-4 px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg hover-lift transition-all shadow-md hover:shadow-lg">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Start Editing
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton"
+                    class="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 hover-lift transition-all">
+
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="lg:hidden bg-white border-t border-gray-100 shadow-lg transform origin-top transition-all duration-300 scale-y-0 opacity-0 absolute w-full z-40">
+
+            <a href="index.html"
+                class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                <i class="fas fa-home mr-3 text-indigo-500"></i>Home
+            </a>
+            <a href="tool.html"
+                class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all active bg-indigo-50 text-indigo-700">
+                <i class="fas fa-edit mr-3 text-indigo-500"></i>Editor Tool
+            </a>
+            <a href="features.html"
+                class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                <i class="fas fa-star mr-3 text-indigo-500"></i>Features
+            </a>
+            <a href="how-it-works.html"
+                class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                <i class="fas fa-play-circle mr-3 text-indigo-500"></i>How It Works
+            </a>
+            <a href="guides.html"
+                class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                <i class="fas fa-book mr-3 text-indigo-500"></i>Guides
+            </a>
+            <a href="faq.html"
+                class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                <i class="fas fa-question-circle mr-3 text-indigo-500"></i>FAQ
+            </a>
+            <a href="about.html"
+                class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                <i class="fas fa-info-circle mr-3 text-indigo-500"></i>About
+            </a>
+            <a href="privacy-policy.html"
+                class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                <i class="fas fa-shield-alt mr-3 text-indigo-500"></i>Privacy Policy
+            </a>
+            <div class="pt-4 mt-4 border-t border-gray-100">
+                <a href="tool.html"
+                    class="block text-center px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg hover-lift transition-all shadow-md">
+                    <i class="fas fa-map-marker-alt mr-2"></i>Start Editing GPS Data
+                </a>
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <!-- Tool Section -->
+    <section class="py-12 lg:py-20 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <div
+                    class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 mb-4">
+                    <i class="fas fa-tools text-indigo-500 mr-2"></i>
+                    <span class="text-sm font-medium text-indigo-700">Live Geotag Editor</span>
+                </div>
+
+                <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                    Edit GPS Data in
+                    <span class="gradient-text">Real Time</span>
+                </h1>
+
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Add, edit, or remove GPS coordinates from your JPEG images directly in your browser. No uploads,
+                    complete privacy guaranteed.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-deep overflow-hidden">
+                <!-- Step Indicator -->
+                <div class="p-8 border-b border-gray-100">
+                    <div class="step-indicator">
+                        <div class="step active" id="step-1">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Upload Image</div>
+                        </div>
+                        <div class="step" id="step-2">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Set Coordinates</div>
+                        </div>
+                        <div class="step" id="step-3">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Download</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8">
+                    <!-- File Upload Area -->
+                    <div class="mb-10" id="upload-section">
+                        <div class="flex items-center mb-6">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-cloud-upload-alt text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900">Upload Your JPEG Image</h3>
+                                <p class="text-gray-600">Drag and drop or click to browse</p>
+                            </div>
+                        </div>
+
+                        <div id="dropZone" class="drop-zone rounded-xl p-12 text-center cursor-pointer">
+                            <input type="file" id="fileInput" class="hidden" accept="image/jpeg,image/jpg" />
+                            <div class="flex flex-col items-center justify-center">
+                                <div
+                                    class="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center mb-6">
+                                    <i class="fas fa-image text-3xl text-indigo-500"></i>
+                                </div>
+                                <p class="text-lg font-medium text-gray-700 mb-2">Drag & drop your JPEG image here</p>
+                                <p class="text-gray-500 mb-6">or click to browse files from your computer</p>
+                                <div class="px-4 py-2 bg-gray-100 rounded-lg text-sm text-gray-600">
+                                    <i class="fas fa-info-circle mr-2 text-blue-500"></i>
+                                    Supports JPEG/JPG files only
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                    <i class="fas fa-lock text-green-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">100% Private</div>
+                                    <div class="text-sm text-gray-600">No server uploads</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                    <i class="fas fa-bolt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">Fast Processing</div>
+                                    <div class="text-sm text-gray-600">Works in your browser</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                                    <i class="fas fa-save text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">Original Quality</div>
+                                    <div class="text-sm text-gray-600">No compression</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- File Info and Preview -->
+                    <div id="file-info-section" class="hidden mb-10">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- Image Preview -->
+                            <div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mr-3">
+                                        <i class="fas fa-eye text-blue-600"></i>
+                                    </div>
+                                    <h3 class="text-xl font-semibold text-gray-900">Image Preview</h3>
+                                </div>
+
+                                <div class="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 p-6">
+                                    <img id="previewImage" class="w-full h-64 object-contain rounded-lg"
+                                        alt="Image preview for geotag editing" />
+                                </div>
+
+                                <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-100">
+                                    <div class="flex items-center text-blue-800">
+                                        <i class="fas fa-info-circle mr-2"></i>
+                                        <span class="text-sm font-medium">Your image is processed locally and never
+                                            uploaded</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Current GPS Data -->
+                            <div>
+                                <div class="flex items-center mb-4">
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center mr-3">
+                                        <i class="fas fa-map-marker-alt text-green-600"></i>
+                                    </div>
+                                    <h3 class="text-xl font-semibold text-gray-900">Current GPS Data</h3>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="text-sm text-gray-500">Latitude</div>
+                                            <div class="text-xs px-2 py-1 bg-gray-200 rounded">Decimal</div>
+                                        </div>
+                                        <div id="current-lat" class="text-lg font-mono text-gray-800">No GPS data found
+                                        </div>
+                                    </div>
+
+                                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="text-sm text-gray-500">Longitude</div>
+                                            <div class="text-xs px-2 py-1 bg-gray-200 rounded">Decimal</div>
+                                        </div>
+                                        <div id="current-lon" class="text-lg font-mono text-gray-800">No GPS data found
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 flex gap-3">
+                                    <button id="change-file"
+                                        class="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center">
+                                        <i class="fas fa-exchange-alt mr-2"></i>
+                                        Change Image
+                                    </button>
+                                    <button id="auto-fill"
+                                        class="flex-1 px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-lg hover-lift transition-all flex items-center justify-center">
+                                        <i class="fas fa-magic mr-2"></i>
+                                        Auto-fill from Image
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GPS Coordinates Input with Map -->
+                    <div id="coordinates-section" class="hidden mb-10">
+                        <div class="flex items-center mb-6">
+                            <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-globe-americas text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900">Set New GPS Coordinates</h3>
+                                <p class="text-gray-600">Enter manually or select from map</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- Input Fields -->
+                            <div>
+                                <div class="space-y-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label for="lat" class="block text-sm font-medium text-gray-700 mb-2">
+                                                <i class="fas fa-globe-americas text-indigo-500 mr-1"></i>
+                                                Latitude
+                                            </label>
+                                            <input type="number" id="lat" step="any" placeholder="e.g. 34.052235"
+                                                class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all" />
+                                            <div class="mt-2 text-xs text-gray-500">
+                                                Range: -90° to 90° (North/South)
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="lon" class="block text-sm font-medium text-gray-700 mb-2">
+                                                <i class="fas fa-globe text-indigo-500 mr-1"></i>
+                                                Longitude
+                                            </label>
+                                            <input type="number" id="lon" step="any" placeholder="e.g. -118.243683"
+                                                class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all" />
+                                            <div class="mt-2 text-xs text-gray-500">
+                                                Range: -180° to 180° (East/West)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <button id="useCurrentLocation"
+                                            class="px-4 py-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors flex items-center justify-center">
+                                            <i class="fas fa-location-arrow mr-2"></i>
+                                            Use My Location
+                                        </button>
+                                        <button id="clearCoordinates"
+                                            class="px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                            <i class="fas fa-eraser mr-2"></i>
+                                            Clear Coordinates
+                                        </button>
+                                    </div>
+
+                                    <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-100">
+                                        <div class="flex items-start">
+                                            <i class="fas fa-lightbulb text-yellow-600 mt-0.5 mr-2"></i>
+                                            <div>
+                                                <div class="font-medium text-yellow-800 mb-1">Pro Tip</div>
+                                                <div class="text-sm text-yellow-700">
+                                                    For best accuracy, use at least 6 decimal places.
+                                                    <a href="how-it-works.html"
+                                                        class="underline hover:text-yellow-900">Learn more</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Map -->
+                            <div>
+                                <div class="h-full flex flex-col">
+                                    <div class="map-container flex-1">
+                                        <div id="map"></div>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                        <div class="text-sm text-gray-600">
+                                            <i class="fas fa-mouse-pointer text-indigo-500 mr-1"></i>
+                                            Click on map to set location
+                                        </div>
+                                        <button id="locateMe"
+                                            class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center">
+                                            <i class="fas fa-crosshairs mr-2"></i>
+                                            Locate Me
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Process Button -->
+                    <div class="mt-12">
+                        <button id="processBtn" class="process-btn" disabled>
+                            <i class="fas fa-cog animate-spin hidden" id="processingSpinner"></i>
+                            <span id="processText">Process Image & Download</span>
+                        </button>
+
+                        <div id="status" class="status-message info">
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <span>Upload a JPEG image to begin editing GPS data</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 lg:p-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div
+                            class="inline-flex items-center px-4 py-2 rounded-full bg-white border border-indigo-100 mb-6">
+                            <i class="fas fa-question-circle text-indigo-500 mr-2"></i>
+                            <span class="text-sm font-medium text-indigo-700">Need Help?</span>
+                        </div>
+
+                        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                            Quick Help &
+                            <span class="gradient-text">Resources</span>
+                        </h2>
+
+                        <p class="text-gray-600 mb-8">
+                            If you're having trouble using our geotag editor tool, check out these helpful resources and
+                            tips.
+                        </p>
+
+                        <div class="space-y-4">
+                            <a href="how-it-works.html"
+                                class="flex items-center text-indigo-600 hover:text-indigo-800 font-medium group">
+                                <i class="fas fa-play-circle text-lg mr-3"></i>
+                                <span class="flex-1">Step-by-Step Tutorial</span>
+                                <i
+                                    class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                            <a href="faq.html"
+                                class="flex items-center text-indigo-600 hover:text-indigo-800 font-medium group">
+                                <i class="fas fa-question-circle text-lg mr-3"></i>
+                                <span class="flex-1">Frequently Asked Questions</span>
+                                <i
+                                    class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                            <a href="guides.html"
+                                class="flex items-center text-indigo-600 hover:text-indigo-800 font-medium group">
+                                <i class="fas fa-book text-lg mr-3"></i>
+                                <span class="flex-1">Detailed Guides</span>
+                                <i
+                                    class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-6">Quick Tips</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <i class="fas fa-check text-green-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">Only JPEG/JPG files are supported</div>
+                                        <div class="text-sm text-gray-600">These formats support EXIF metadata for GPS
+                                            data</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <i class="fas fa-map text-blue-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">Use decimal format for coordinates</div>
+                                        <div class="text-sm text-gray-600">Example: 34.052235 for latitude, -118.243683
+                                            for longitude</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <i class="fas fa-lock text-purple-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">Your images never leave your browser
+                                        </div>
+                                        <div class="text-sm text-gray-600">All processing happens locally for maximum
+                                            privacy</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative bg-gray-900 text-gray-300">
+        <div class="footer-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+                <!-- Brand & Description -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Geotag Editor</h3>
+                            <div class="text-sm text-indigo-300 font-medium">GeotagEditor.com</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        Free online tool to add, edit or remove GPS metadata from photos.
+                        100% browser-based processing ensures your photos never leave your device.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-twitter text-gray-300"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-github text-gray-300"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-linkedin-in text-gray-300"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="tool.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group active text-indigo-300">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i>
+                                Editor Tool
+                            </a>
+                        </li>
+                        <li>
+                            <a href="features.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Features
+                            </a>
+                        </li>
+                        <li>
+                            <a href="how-it-works.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                How It Works
+                            </a>
+                        </li>
+                        <li>
+                            <a href="faq.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                FAQ
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Resources & Legal -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Resources & Legal</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="privacy-policy.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="terms.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Contact Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="sitemap.xml"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Sitemap
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Privacy Badge -->
+                    <div class="mt-8 p-4 bg-gray-800 rounded-lg border border-gray-700">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-green-900/30 flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-green-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-white font-medium">100% Secure</div>
+                                <div class="text-xs text-gray-400">All processing happens in your browser</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="mt-12 pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-500 text-sm">
+                        © 2025 <span class="text-white font-medium">GeotagEditor.com</span> • All Rights Reserved
+                    </div>
+                    <div class="mt-4 md:mt-0 text-gray-500 text-sm">
+                        Made with <i class="fas fa-heart text-red-400 mx-1"></i> for photographers worldwide
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/geotag-tool.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // outside click se conflict na ho
+
+            mobileMenu.classList.toggle('scale-y-0');
+            mobileMenu.classList.toggle('opacity-0');
+            mobileMenu.classList.toggle('scale-y-100');
+            mobileMenu.classList.toggle('opacity-100');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.add('scale-y-0', 'opacity-0');
+                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
+            }
+        });
+
+
+        // Set active nav link based on current page
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileLinks = document.querySelectorAll('#mobileMenu a');
+
+            // Update desktop nav
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                    link.classList.add('text-indigo-600');
+                } else {
+                    link.classList.remove('active');
+                    link.classList.remove('text-indigo-600');
+                }
+            });
+
+            // Update mobile nav
+            mobileLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                    link.classList.add('bg-indigo-50', 'text-indigo-700');
+                } else {
+                    link.classList.remove('active');
+                    link.classList.remove('bg-indigo-50', 'text-indigo-700');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
