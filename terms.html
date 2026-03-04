@@ -1092,85 +1092,159 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="relative bg-gray-900 text-white pt-16 pb-8">
+     <!-- Footer -->
+    <footer class="relative bg-gray-900 text-gray-300 mt-20">
+        <!-- Wave Divider -->
         <div class="footer-wave">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
             </svg>
         </div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+
+        <div class="relative max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+                <!-- Brand & Description -->
                 <div class="lg:col-span-2">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
                         </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold">Geotag Editor</h3>
-                            <p class="text-gray-400 text-sm">by GeotagEditor.com</p>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Geotag Editor</h3>
+                            <div class="text-sm text-indigo-300 font-medium">GeotagEditor.com</div>
                         </div>
                     </div>
-                    <p class="text-gray-400 mb-6 max-w-md">A privacy-first, browser-based tool for editing GPS metadata in your photos. No uploads, no data collection, completely free.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-indigo-600 transition-all flex items-center justify-center">
-                            <i class="fab fa-github"></i>
+                    <p class="text-gray-400 max-w-md">
+                        Free online tool to add, edit or remove GPS metadata from photos.
+                        100% browser-based processing ensures your photos never leave your device.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-twitter text-gray-300"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-indigo-600 transition-all flex items-center justify-center">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-github text-gray-300"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-indigo-600 transition-all flex items-center justify-center">
-                            <i class="fab fa-reddit"></i>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors">
+                            <i class="fab fa-linkedin-in text-gray-300"></i>
                         </a>
                     </div>
                 </div>
-                
+
+                <!-- Quick Links -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-6">Product</h4>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
                     <ul class="space-y-3">
-                        <li><a href="tool.html" class="text-gray-400 hover:text-white transition-colors">Editor Tool</a></li>
-                        <li><a href="features.html" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
-                        <li><a href="how-it-works.html" class="text-gray-400 hover:text-white transition-colors">How It Works</a></li>
-                        <li><a href="guides.html" class="text-gray-400 hover:text-white transition-colors">Guides</a></li>
-                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                        <li>
+                            <a href="tool.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Editor Tool
+                            </a>
+                        </li>
+                        <li>
+                            <a href="features.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Features
+                            </a>
+                        </li>
+                        <li>
+                            <a href="how-it-works.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                How It Works
+                            </a>
+                        </li>
+                        <li>
+                            <a href="faq.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                FAQ
+                            </a>
+                        </li>
                     </ul>
                 </div>
-                
+
+                <!-- Resources & Legal -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-6">Legal</h4>
+                    <h4 class="text-lg font-semibold text-white mb-4">Resources & Legal</h4>
                     <ul class="space-y-3">
-                        <li><a href="terms.html" class="text-white font-medium">Terms of Service</a></li>
-                        <li><a href="privacy-policy.html" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="cookie-policy.html" class="text-gray-400 hover:text-white transition-colors">Cookie Policy</a></li>
-                        <li><a href="disclaimer.html" class="text-gray-400 hover:text-white transition-colors">Disclaimer</a></li>
+                        <li>
+                            <a href="privacy-policy.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="terms.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Contact Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="sitemap.xml"
+                                class="flex items-center text-gray-400 hover:text-white transition-colors group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Sitemap
+                            </a>
+                        </li>
                     </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">Company</h4>
-                    <ul class="space-y-3">
-                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="changelog.html" class="text-gray-400 hover:text-white transition-colors">Changelog</a></li>
-                    </ul>
+
+                    <!-- Privacy Badge -->
+                    <div class="mt-8 p-4 bg-gray-800 rounded-lg border border-gray-700">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-green-900/30 flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-green-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-white font-medium">100% Secure</div>
+                                <div class="text-xs text-gray-400">All processing happens in your browser</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-800 pt-8">
+
+            <!-- Copyright -->
+            <div class="mt-12 pt-8 border-t border-gray-800">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2024 GeotagEditor.com. All rights reserved.</p>
-                    <div class="flex items-center space-x-6">
-                        <a href="sitemap.html" class="text-gray-400 hover:text-white text-sm transition-colors">Sitemap</a>
-                        <a href="accessibility.html" class="text-gray-400 hover:text-white text-sm transition-colors">Accessibility</a>
-                        <span class="inline-flex items-center text-green-400 text-sm">
-                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-                            Service Status: Operational
-                        </span>
+                    <div class="text-gray-500 text-sm">
+                        © 2025 <span class="text-white font-medium">GeotagEditor.com</span> • All Rights Reserved
+                    </div>
+                    <div class="mt-4 md:mt-0 text-gray-500 text-sm">
+                        Made with <i class="fas fa-heart text-red-400 mx-1"></i> for photographers worldwide
                     </div>
                 </div>
             </div>
@@ -1178,9 +1252,9 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-indigo-600 text-white rounded-full shadow-lg hover-lift transition-all opacity-0 invisible z-40">
+    <!-- <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-indigo-600 text-white rounded-full shadow-lg hover-lift transition-all opacity-0 invisible z-40">
         <i class="fas fa-arrow-up"></i>
-    </button>
+    </button> -->
 
     <!-- Mobile Menu Script -->
     <script>
