@@ -358,7 +358,7 @@ function resetTool() {
     if (fileInput) fileInput.value = '';
     
     // Reset status
-    updateStatus('Upload a JPEG image to begin editing GPS data', 'info');
+    updateStatus('Upload a JPEG or PNG image to begin editing GPS data', 'info');
     
     // Clear coordinates
     clearCoordinates();
@@ -459,9 +459,12 @@ function handleFileSelect(event) {
     
     console.log('Selected file:', file.name, file.type, file.size);
     
-    // Check if file is JPEG
-    if (!file.type.match('image/jpeg') && !file.name.toLowerCase().endsWith('.jpg') && !file.name.toLowerCase().endsWith('.jpeg')) {
-        showNotification('Please upload a JPEG image (.jpg or .jpeg format)', 'error');
+    // Check if file is JPEG or PNG
+    if (!file.type.match('image/jpeg') && !file.type.match('image/png') && 
+        !file.name.toLowerCase().endsWith('.jpg') && 
+        !file.name.toLowerCase().endsWith('.jpeg') && 
+        !file.name.toLowerCase().endsWith('.png')) {
+        showNotification('Please upload a JPEG or PNG image (.jpg, .jpeg, or .png format)', 'error');
         return;
     }
     
@@ -631,62 +634,91 @@ function processImage() {
     
     const reader = new FileReader();
     reader.onload = function(e) {
-        try {
-            console.log('Processing image with piexif...');
-            const base64 = e.target.result;
-            const latRef = latVal >= 0 ? "N" : "S";
-            const lonRef = lonVal >= 0 ? "E" : "W";
-            
-            // Create GPS data object
-            const gpsData = {};
-            gpsData[piexif.GPSIFD.GPSLatitudeRef] = latRef;
-            gpsData[piexif.GPSIFD.GPSLatitude] = piexif.GPSHelper.degToDmsRational(latVal);
-            gpsData[piexif.GPSIFD.GPSLongitudeRef] = lonRef;
-            gpsData[piexif.GPSIFD.GPSLongitude] = piexif.GPSHelper.degToDmsRational(lonVal);
-            
-            // Create EXIF object
-            const exifObj = { 
-                "0th": {}, 
-                "Exif": {}, 
-                "GPS": gpsData, 
-                "1st": {},
-                "thumbnail": null 
-            };
-            
-            const exifBytes = piexif.dump(exifObj);
-            processedImageData = piexif.insert(exifBytes, base64);
-            
-            console.log('Image processed successfully');
-            updateStatus('Image processed successfully! Ready to download.', 'success');
-            showNotification('Image processed successfully!', 'success');
-            
-            // Generate suggested filename
-            const originalName = file.name;
-            const nameWithoutExt = originalName.replace(/\.[^/.]+$/, "");
-            const suggestedName = `geotag_edited_${nameWithoutExt}.jpg`;
-            
-            if (suggestedFilename) suggestedFilename.textContent = suggestedName;
-            if (filenameInput) filenameInput.value = suggestedName;
-            
-            // Show filename modal
-            if (filenameModal) {
-                filenameModal.classList.add('show');
-                console.log('Filename modal shown');
+        const processBase64 = (base64) => {
+            try {
+                console.log('Processing image with piexif...');
+                const latRef = latVal >= 0 ? "N" : "S";
+                const lonRef = lonVal >= 0 ? "E" : "W";
+                
+                // Create GPS data object
+                const gpsData = {};
+                gpsData[piexif.GPSIFD.GPSLatitudeRef] = latRef;
+                gpsData[piexif.GPSIFD.GPSLatitude] = piexif.GPSHelper.degToDmsRational(latVal);
+                gpsData[piexif.GPSIFD.GPSLongitudeRef] = lonRef;
+                gpsData[piexif.GPSIFD.GPSLongitude] = piexif.GPSHelper.degToDmsRational(lonVal);
+                
+                // Create EXIF object
+                const exifObj = { 
+                    "0th": {}, 
+                    "Exif": {}, 
+                    "GPS": gpsData, 
+                    "1st": {},
+                    "thumbnail": null 
+                };
+                
+                const exifBytes = piexif.dump(exifObj);
+                processedImageData = piexif.insert(exifBytes, base64);
+                
+                console.log('Image processed successfully');
+                updateStatus('Image processed successfully! Ready to download.', 'success');
+                showNotification('Image processed successfully!', 'success');
+                
+                // Generate suggested filename
+                const originalName = file.name;
+                const nameWithoutExt = originalName.replace(/\.[^/.]+$/, "");
+                const suggestedName = `geotag_edited_${nameWithoutExt}.jpg`;
+                
+                if (suggestedFilename) suggestedFilename.textContent = suggestedName;
+                if (filenameInput) filenameInput.value = suggestedName;
+                
+                // Show filename modal
+                if (filenameModal) {
+                    filenameModal.classList.add('show');
+                    console.log('Filename modal shown');
+                }
+                
+            } catch (err) {
+                console.error('Processing error:', err);
+                updateStatus('Error processing image: ' + err.message, 'error');
+                showNotification('Error processing image: ' + err.message, 'error');
+                
+                // Reset step indicator
+                if (step3) step3.classList.remove('active');
+                if (step2) step2.classList.add('active');
+            } finally {
+                // Reset button state
+                if (processingSpinner) processingSpinner.classList.add('hidden');
+                if (processText) processText.textContent = 'Process Image & Download';
+                if (processBtn) processBtn.disabled = false;
             }
-            
-        } catch (err) {
-            console.error('Processing error:', err);
-            updateStatus('Error processing image: ' + err.message, 'error');
-            showNotification('Error processing image: ' + err.message, 'error');
-            
-            // Reset step indicator
-            if (step3) step3.classList.remove('active');
-            if (step2) step2.classList.add('active');
-        } finally {
-            // Reset button state
-            if (processingSpinner) processingSpinner.classList.add('hidden');
-            if (processText) processText.textContent = 'Process Image & Download';
-            if (processBtn) processBtn.disabled = false;
+        };
+
+        if (file.type.match('image/png') || file.name.toLowerCase().endsWith('.png')) {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                // Fill white background for transparent PNGs
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+                const jpegBase64 = canvas.toDataURL('image/jpeg', 1.0);
+                processBase64(jpegBase64);
+            };
+            img.onerror = () => {
+                showNotification('Error converting PNG to JPEG', 'error');
+                updateStatus('Error converting PNG to JPEG', 'error');
+                if (processingSpinner) processingSpinner.classList.add('hidden');
+                if (processText) processText.textContent = 'Process Image & Download';
+                if (processBtn) processBtn.disabled = false;
+                if (step3) step3.classList.remove('active');
+                if (step2) step2.classList.add('active');
+            };
+            img.src = e.target.result;
+        } else {
+            processBase64(e.target.result);
         }
     };
     

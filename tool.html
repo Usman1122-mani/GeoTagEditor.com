@@ -516,23 +516,23 @@
                                 <i class="fas fa-cloud-upload-alt text-indigo-600"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl font-semibold text-gray-900">Upload Your JPEG Image</h3>
+                                <h3 class="text-xl font-semibold text-gray-900">Upload Your JPEG or PNG Image</h3>
                                 <p class="text-gray-600">Drag and drop or click to browse</p>
                             </div>
                         </div>
 
                         <div id="dropZone" class="drop-zone rounded-xl p-12 text-center cursor-pointer">
-                            <input type="file" id="fileInput" class="hidden" accept="image/jpeg,image/jpg" />
+                            <input type="file" id="fileInput" class="hidden" accept="image/jpeg,image/jpg,image/png" />
                             <div class="flex flex-col items-center justify-center">
                                 <div
                                     class="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center mb-6">
                                     <i class="fas fa-image text-3xl text-indigo-500"></i>
                                 </div>
-                                <p class="text-lg font-medium text-gray-700 mb-2">Drag & drop your JPEG image here</p>
+                                <p class="text-lg font-medium text-gray-700 mb-2">Drag & drop your JPEG or PNG image here</p>
                                 <p class="text-gray-500 mb-6">or click to browse files from your computer</p>
                                 <div class="px-4 py-2 bg-gray-100 rounded-lg text-sm text-gray-600">
                                     <i class="fas fa-info-circle mr-2 text-blue-500"></i>
-                                    Supports JPEG/JPG files only
+                                    Supports JPEG/JPG/PNG files
                                 </div>
                             </div>
                         </div>
@@ -742,7 +742,7 @@
                         <div id="status" class="status-message info">
                             <div class="flex items-center justify-center">
                                 <i class="fas fa-info-circle mr-2"></i>
-                                <span>Upload a JPEG image to begin editing GPS data</span>
+                                <span>Upload a JPEG or PNG image to begin editing GPS data</span>
                             </div>
                         </div>
                     </div>
@@ -808,9 +808,8 @@
                                         <i class="fas fa-check text-green-600 text-sm"></i>
                                     </div>
                                     <div>
-                                        <div class="font-medium text-gray-800">Only JPEG/JPG files are supported</div>
-                                        <div class="text-sm text-gray-600">These formats support EXIF metadata for GPS
-                                            data</div>
+                                        <div class="font-medium text-gray-800">JPEG, JPG, and PNG files are supported</div>
+                                        <div class="text-sm text-gray-600">Images will be exported as JPEG with EXIF metadata for GPS data</div>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
