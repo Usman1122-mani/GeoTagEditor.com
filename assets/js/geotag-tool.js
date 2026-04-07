@@ -179,11 +179,14 @@ function initMap() {
             scrollWheelZoom: true
         });
         
-        // Add tile layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            maxZoom: 19,
-            detectRetina: true
+        // Add tile layer (Google Maps forced to English)
+        L.tileLayer('https://{s}.google.com/vt/lyrs=m&tl=en&hl=en&x={x}&y={y}&z={z}', {
+            attribution: 'Map data &copy; <a href="https://www.google.com/maps">Google</a>',
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+            maxZoom: 20,
+            updateWhenIdle: false,
+            updateWhenZooming: false,
+            keepBuffer: 4
         }).addTo(map);
         
         // Create custom marker icon
@@ -214,6 +217,12 @@ function initMap() {
         });
         
         console.log('Map initialized successfully');
+        
+        // Ensure size is correct if initialized while transition happens
+        setTimeout(() => {
+            if (map) map.invalidateSize();
+        }, 200);
+        
         
     } catch (error) {
         console.error('Error initializing map:', error);
@@ -522,6 +531,12 @@ function handleFileSelect(event) {
             setTimeout(() => initMap(), 100);
         } else {
             console.log('Map already initialized');
+            setTimeout(() => {
+                map.invalidateSize();
+                if (marker) {
+                    map.setView(marker.getLatLng(), map.getZoom());
+                }
+            }, 100);
         }
         
         // Enable process button if coordinates are filled
@@ -785,8 +800,8 @@ function initTool() {
         return;
     }
     
-    // Initialize map
-    setTimeout(() => initMap(), 500);
+    // Initialize map immediately
+    initMap();
     
     // Event Listeners for File Upload
     if (dropZone) {
@@ -970,7 +985,7 @@ function initTool() {
         }
         
         #map {
-            min-height: 300px;
+            min-height: 400px;
         }
     `;
     document.head.appendChild(style);
@@ -997,10 +1012,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    // Initialize tool after a short delay to ensure everything is loaded
-    setTimeout(() => {
-        initTool();
-    }, 100);
+    // Initialize tool immediately
+    initTool();
 });
 
 // Also initialize when window loads

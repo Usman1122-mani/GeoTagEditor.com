@@ -1,0 +1,40 @@
+# GeoTagEditor.com
+
+> Free, powerful, and secure EXIF and Geotag editor for images.
+
+## Overview
+
+GeoTagEditor is a 100% browser-based tool that allows users to add, edit, or remove GPS metadata (geotags) from their photos. All processing happens entirely within the user's browser, ensuring absolute privacy as photos are never uploaded to any remote server.
+
+## Core Features
+
+- View EXIF metadata implicitly embedded in photos
+- Add GPS coordinates securely to photos lacking geotags
+- Edit or correct the geographic location on existing photos
+- Strip and remove all EXIF data for maximum privacy before sharing
+
+## Site Structure
+
+- Homepage: https://geotageditor.com/
+- Main Editor Tool: https://geotageditor.com/tool.html
+- How it Works: https://geotageditor.com/how-it-works.html
+- Features Overview: https://geotageditor.com/features.html
+- User Guides: https://geotageditor.com/guides.html
+- FAQ / Help: https://geotageditor.com/faq.html
+- Privacy Policy: https://geotageditor.com/privacy-policy.html
+- Terms of Service: https://geotageditor.com/terms.html
+- Contact Us: https://geotageditor.com/contact.html
+
+## Technical Design
+
+- Pure Client-Side Execution (Vanilla HTML/JS/CSS structure).
+- No backend servers receive or process image data.
+- Built utilizing:
+  - Piexifjs (For manipulating EXIF blocks in JPEGs).
+  - Leaflet.js & Tile Providers (For coordinate picking features).
+  - TailwindCSS (For UI styling constraints).
+
+## Meta Information
+
+- Sitemap: https://geotageditor.com/sitemap.xml
+- Robots: https://geotageditor.com/robots.txt
