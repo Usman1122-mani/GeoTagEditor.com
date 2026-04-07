@@ -352,7 +352,8 @@
         </div>
     </div>
 
-    <header class="sticky top-0 z-[9999] bg-white shadow-soft transition-all duration-300">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-soft transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 <!-- Logo -->
@@ -382,9 +383,8 @@
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center space-x-1">
-                    <a href="index.html"
-                        class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
-                        <i class="fa-solid fa-house mr-2 text-indigo-500"></i>
+                    <a href="index.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
+                        <i class="fas fa-house mr-2 text-sm"></i>
                         Home
                     </a>
 
@@ -397,13 +397,7 @@
                     <a href="how-it-works.html"
                         class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
                         <i class="fas fa-play-circle mr-2 text-sm"></i>How It Works
-                    </a>
-                    <a href="guides.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
-                        <i class="fas fa-book mr-2 text-sm"></i>Guides
-                    </a>
-                    <a href="faq.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
-                        <i class="fas fa-question-circle mr-2 text-sm"></i>FAQ
-                    </a>
+                </a>
                     <a href="about.html" class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-indigo-600">
                         <i class="fas fa-info-circle mr-2 text-sm"></i>About
                     </a>
@@ -426,7 +420,7 @@
 
         <!-- Mobile Menu -->
         <div id="mobileMenu"
-            class="lg:hidden bg-white border-t border-gray-100 shadow-lg transform origin-top transition-all duration-300 scale-y-0 opacity-0 absolute w-full z-[9998]">
+            class="lg:hidden bg-white border-t border-gray-100 shadow-lg transform origin-top transition-all duration-300 scale-y-0 opacity-0 absolute w-full z-40">
             <div class="px-4 py-6 space-y-1 bg-grid-pattern">
                 <a href="index.html"
                     class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all active bg-gray-50">
@@ -444,21 +438,9 @@
                     class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
                     <i class="fas fa-play-circle mr-3 text-indigo-500"></i>How It Works
                 </a>
-                <a href="guides.html"
-                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
-                    <i class="fas fa-book mr-3 text-indigo-500"></i>Guides
-                </a>
-                <a href="faq.html"
-                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
-                    <i class="fas fa-question-circle mr-3 text-indigo-500"></i>FAQ
-                </a>
                 <a href="about.html"
                     class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
                     <i class="fas fa-info-circle mr-3 text-indigo-500"></i>About
-                </a>
-                <a href="privacy-policy.html"
-                    class="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
-                    <i class="fas fa-shield-alt mr-3 text-indigo-500"></i>Privacy Policy
                 </a>
                 <div class="pt-4 mt-4 border-t border-gray-100">
                     <a href="tool.html"
@@ -964,11 +946,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="sitemap.xml"
+                              <a href="guides.html"
                                 class="flex items-center text-gray-400 hover:text-white transition-colors group">
                                 <i
                                     class="fas fa-chevron-right text-xs mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                                Sitemap
+                                Guide
                             </a>
                         </li>
                     </ul>
