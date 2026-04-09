@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Decimal Degrees vs DMS (GPS Formats Explained)</title>
+    <meta name="description" content="A simple guide explaining the difference between Decimal Degrees and DMS, and how to input them accurately in any photo metadata editor.">
+    <meta name="keywords" content="photo metadata editor, Decimal Degrees, DMS coordinates, geotag editor online, Geotagging formats">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://geotageditor.com/blog/gps-coordinate-formats.html">
+    <meta property="og:title" content="Understanding GPS Formats: Decimal Degrees vs DMS">
+    <meta property="og:description" content="Confused by GPS numbers? Learn the difference between Decimal Degrees and DMS for your geotagging workflow.">
+    <meta property="og:image" content="https://geotageditor.com/assets/images/og-image.jpg">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-geotageditor.com.png">
+    <link rel="shortcut icon" href="../assets/images/favicon-geotageditor.com.png">
+    <link rel="canonical" href="https://geotageditor.com/blog/gps-coordinate-formats.html">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        :root { --primary-color: #4f46e5; }
+        body { font-family: 'Inter', sans-serif; }
+        .hover-lift:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--primary-color); transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        .article-body h2 { @apply text-2xl font-bold text-gray-900 mt-10 mb-4; }
+        .article-body h3 { @apply text-xl font-bold text-gray-800 mt-8 mb-3; }
+        .article-body p { @apply text-lg text-gray-700 leading-relaxed mb-6; }
+        .article-body ul { @apply list-disc list-inside space-y-2 mb-6 text-lg text-gray-700 ml-4; }
+        .article-body li { @apply mb-2; }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <header class="sticky top-0 z-50 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
+                            <i class="fas fa-globe text-white"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="../index.html" class="text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors">Geotag Editor</a>
+                    </div>
+                </div>
+
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <a href="../index.html" class="nav-link px-4 py-2 text-gray-700 font-medium">Home</a>
+                    <a href="../tool.html" class="nav-link px-4 py-2 text-gray-700 font-medium">Editor Tool</a>
+                    <a href="../blog.html" class="nav-link active text-indigo-600 px-4 py-2 font-medium">Blog</a>
+                    <a href="../tool.html" class="ml-4 px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg shadow-md hover-lift transition-all">Start Editing</a>
+                </nav>
+
+                <button id="mobileMenuButton" class="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="lg:hidden bg-white shadow-lg transform origin-top transition-all duration-300 scale-y-0 opacity-0 absolute w-full z-40">
+            <div class="px-4 py-6 space-y-2">
+                <a href="../index.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-50">Home</a>
+                <a href="../blog.html" class="block px-4 py-3 text-indigo-600 font-medium rounded-lg bg-gray-50">Blog</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog Header -->
+    <section class="py-16 md:py-24 bg-white relative overflow-hidden flex justify-center items-center border-b border-gray-100">
+        <div class="container mx-auto px-4 max-w-4xl relative z-10">
+            <div class="mb-6 flex items-center gap-3">
+                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-sm font-semibold rounded-full uppercase tracking-wide">Technical Guide</span>
+                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 6 min read</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-8">
+                Understanding GPS Formats: Decimal Degrees vs DMS
+            </h1>
+        </div>
+    </section>
+
+    <main class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 md:p-12 article-body">
+                
+                <p>When you begin manually managing your image data using a <strong>photo metadata editor</strong>, you frequently encounter numbers that look entirely foreign. GPS coordinates generally appear in two foundational formats: Decimal Degrees (DD) and Degrees, Minutes, Seconds (DMS).</p>
+                <p>Understanding the difference—and knowing which one to use when uploading to a <strong>geotag editor online</strong>—will save you immense frustration when properly aligning your photographs.</p>
+
+                <h2>What is Decimal Degrees (DD)?</h2>
+                <p>Decimal Degrees express latitude and longitude geographic coordinates as single numeric values. They utilize standard positive and negative decimals to represent directional hemispheres.</p>
+                <p><strong>Example:</strong> `34.0522, -118.2437` (Los Angeles)</p>
+                <ul>
+                    <li>Northern Hemisphere equates to positive latitude values.</li>
+                    <li>Southern Hemisphere equates to negative latitude values.</li>
+                    <li>Eastern Hemisphere equates to positive longitude values.</li>
+                    <li>Western Hemisphere equates to negative longitude values.</li>
+                </ul>
+                <p>Because they are simple numerical integers, computer systems and web mapping APIs deeply prefer processing this format.</p>
+
+                <h2>What is Degrees, Minutes, and Seconds (DMS)?</h2>
+                <p>DMS is the traditional, analog way of representing geographic mapping. Instead of relying on a clean decimal cut-off, it relies on fractions out of 60, much like telling time. It utilizes symbols like ° (degrees), ' (minutes), and " (seconds) along with compass directions (N, S, E, W).</p>
+                <p><strong>Example:</strong> `34° 3' 7.92" N, 118° 14' 37.32" W` (The exact same Los Angeles location)</p>
+
+                <h2>Why Do Photo Metadata Editors Prefer Decimal Degrees?</h2>
+                <p>Almost all modern software interfaces—including Google Maps and our proprietary online application—accept Decimal Degrees by default. The logic is straightforward: computing a negative numerical value is much faster and less prone to user syntax error than asking someone to type special degree icons (°) on their mobile keyboard.</p>
+
+                <div class="my-10 p-6 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg">
+                    <h3 class="mt-0 text-yellow-900">Important Geotagging Tip</h3>
+                    <p class="mb-0 text-yellow-800 text-base">If you only possess DMS coordinates for a specific shoot location, look up a free DD converter on Google before attempting to manually overwrite EXIF data. Inputting incorrect formatting into metadata limits can corrupt the mapping tag.</p>
+                </div>
+
+                <h2>How to Convert Between Format Types</h2>
+                <p>Converting manually involves a math equation, but the fastest method is utilizing online web maps. If you search a location on Maps, the desktop URL cleanly extracts the precise Decimal Degree marker.</p>
+                <p>Alternatively, the GeotagEditor platform requires absolutely zero math! Just drop your image into our workspace. You interact visually with a sleek map interface, select a target, and the backend engine automatically translates your pin into accurate numeric logic before cementing it safely into your JPEG metadata.</p>
+
+                <h2>Frequently Asked Questions</h2>
+                
+                <h3>Which format does an iPhone camera use?</h3>
+                <p>At the hardware level, iOS and Android encode the internal EXIF data text using fractional representations closer to DMS. However, any software that reads the picture translates it immediately to Decimal Degrees for UI simplicity.</p>
+                
+                <h3>What happens if I type coordinates backward?</h3>
+                <p>Swapping latitude and longitude accidentally will shoot your photograph location to a completely different spot across the globe—often ending up in the middle of the ocean!</p>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom CTA -->
+    <section class="py-20 bg-indigo-900 border-t border-indigo-950 text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-white mb-6">Skip the Math completely!</h2>
+            <p class="text-xl text-indigo-200 mb-10 max-w-2xl mx-auto">Don't worry about decimals or minutes. Point to a map and let our system rewrite your EXIF data dynamically.</p>
+            <a href="../tool.html" class="inline-flex items-center px-8 py-4 bg-white text-indigo-700 font-semibold rounded-xl hover-lift transition-all shadow-lg text-lg">
+                <i class="fas fa-edit mr-2"></i> Try Geotag Editor Tool
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-950 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center"><span class="font-bold text-white text-lg tracking-wide">GeotagEditor</span></div>
+            <div class="flex space-x-6"><a href="../blog.html" class="hover:text-white">Blog</a></div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobileMenuButton');
+        const menu = document.getElementById('mobileMenu');
+        if(btn && menu) btn.addEventListener('click', () => { menu.classList.toggle('scale-y-0'); menu.classList.toggle('opacity-0'); });
+    </script>
+</body>
+</html>

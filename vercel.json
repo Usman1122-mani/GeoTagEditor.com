@@ -1,9 +1,5 @@
 {
-  "cleanUrls": true,
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/$1.html"
-    }
+  "routes": [
+    { "src": "/(.*)", "dest": "/tool.html" }
   ]
 }
