@@ -3,56 +3,123 @@
 
   <url>
     <loc>https://geotageditor.com/</loc>
-    <lastmod>2025-12-19T16:55:21+00:00</lastmod>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
     <priority>1.00</priority>
   </url>
 
   <url>
-    <loc>https://geotageditor.com/tool</loc>
-    <lastmod>2025-12-19T16:55:21+00:00</lastmod>
+    <loc>https://geotageditor.com/tool.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://geotageditor.com/features.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://geotageditor.com/features</loc>
-    <lastmod>2025-12-19T16:55:21+00:00</lastmod>
+    <loc>https://geotageditor.com/how-it-works.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://geotageditor.com/how-it-works</loc>
-    <lastmod>2025-12-19T16:55:21+00:00</lastmod>
+    <loc>https://geotageditor.com/guides.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://geotageditor.com/guides</loc>
-    <lastmod>2025-12-19T16:55:21+00:00</lastmod>
+    <loc>https://geotageditor.com/faq.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://geotageditor.com/faq</loc>
-    <lastmod>2025-12-19T16:55:21+00:00</lastmod>
+    <loc>https://geotageditor.com/about.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://geotageditor.com/about</loc>
-    <lastmod>2025-12-19T16:55:21+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://geotageditor.com/privacy-policy</loc>
-    <lastmod>2025-12-19T16:55:21+00:00</lastmod>
+    <loc>https://geotageditor.com/blog.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>
 
   <url>
     <loc>https://geotageditor.com/contact.html</loc>
-    <lastmod>2025-12-19T16:55:21+00:00</lastmod>
-    <priority>0.80</priority>
-</url>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.50</priority>
+  </url>
+
+  <url>
+    <loc>https://geotageditor.com/privacy-policy.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.50</priority>
+  </url>
+
+  <url>
+    <loc>https://geotageditor.com/terms.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.50</priority>
+  </url>
+
+  <!-- Blog Posts -->
+  <url>
+    <loc>https://geotageditor.com/blog/adding-location-to-scans.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://geotageditor.com/blog/change-gps-location-picture.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://geotageditor.com/blog/geotag-photos-google-my-business-seo.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://geotageditor.com/blog/gps-coordinate-formats.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://geotageditor.com/blog/how-to-remove-location-data-photos.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://geotageditor.com/blog/photo-metadata-guide.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://geotageditor.com/blog/real-estate-geotagging.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://geotageditor.com/blog/remove-gps-data.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://geotageditor.com/blog/social-network-geotags.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+  </url>
 
 </urlset>
