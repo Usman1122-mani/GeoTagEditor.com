@@ -67,6 +67,12 @@
     <priority>0.50</priority>
   </url>
 
+   <url>
+    <loc>https://geotageditor.com/blog.html</loc>
+    <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+    <priority>0.50</priority>
+  </url>
+
   <!-- Blog Posts -->
   <url>
     <loc>https://geotageditor.com/blog/adding-location-to-scans.html</loc>
